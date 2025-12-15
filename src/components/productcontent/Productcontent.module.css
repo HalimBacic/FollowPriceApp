@@ -1,0 +1,42 @@
+/* ProductTable.module.css */
+
+.productGrid {
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: white; 
+  border-radius: 8px; 
+  overflow: hidden; 
+  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2); 
+}
+
+.gridCell {
+  text-align: center; 
+  vertical-align: middle; 
+  border: none; 
+  padding: 20px; 
+}
+
+/* 2. Povećanje slike */
+.productImage {
+  max-width: 120px; /* Povećali smo maksimalnu širinu za sliku (npr. sa 80px na 120px) */
+  height: auto;
+  display: block; /* Važno: slika je 'block' element */
+  margin: 0 auto; /* Centriranje 'block' elementa unutar .centeredCell */
+  padding: 10px;
+}
+
+/* Opcionalno: Ako ipak želite minimalnu vizuelnu separaciju između ćelija, 
+   možete dodati lagani border-bottom na sve ćelije osim u zadnjem redu,
+   i/ili border-right na ćelije u prvim kolonama, ali samo ako je apsolutno neophodno.
+   Inače, ostavite `border: none;` za potpuno "čist" izgled.
+*/
+
+/* Primer minimalnog razdvajanja ako želite (uklonite ako ne trebate) */
+/*
+.productGrid tr:not(:last-child) .gridCell {
+  border-bottom: 1px solid #f0f0f0; 
+}
+.productGrid tr td:not(:last-child) {
+  border-right: 1px solid #f0f0f0;
+}
+*/

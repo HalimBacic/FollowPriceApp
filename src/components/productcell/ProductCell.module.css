@@ -1,0 +1,61 @@
+/* Kontejner za celu ćeliju (td element) */
+.cellContainer {
+  padding: 15px;
+  line-height: 1.5; /* Povećavamo razmak između redova */
+  text-align: center;
+  /* Dodajte border-bottom ako želite vizuelno odvajanje redova u tabeli */
+  /* border-bottom: 1px solid #eee; */ 
+}
+
+/* Omot za sve podatke unutar ćelije (div element) */
+.dataWrapper {
+  max-width: 250px;
+  margin: 0 auto; /* Centriranje bloka podataka unutar td-a */
+  text-align: left; /* Poravnanje teksta unutar bloka na lijevu stranu */
+}
+
+/* Stil za sve redove podataka */
+.dataRow {
+  margin: 0 0 8px; /* Mali razmak između redova */
+  display: flex; /* Koristimo flexbox za poravnanje labela i vrijednosti */
+}
+
+/* Stil za zadnji red podataka (bez donje margine) */
+.dataRowNoMargin {
+  margin: 0;
+  display: flex;
+}
+
+/* Stil za labelu (npr. "Proizvođač:") */
+.label {
+  display: inline-block;
+  min-width: 100px; /* Fiksna širina za labelu radi poravnanja */
+  color: #6c757d; /* Siva boja */
+  font-weight: 500;
+  flex-shrink: 0; /* Osigurava da se labela ne smanji */
+}
+
+/* Stil za glavnu vrijednost (npr. Tip Proizvoda) */
+.mainValue {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #343a40;
+}
+
+/* Stil za cijenu */
+.priceValue {
+  color: #007bff; /* Plava boja */
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+/* Stilovi za prikaz razlike (diff) */
+.positiveDiff {
+  color: #28a745; /* Zelena za pozitivnu razliku */
+  font-weight: bold;
+}
+
+.negativeDiff {
+  color: #dc3545; /* Crvena za negativnu razliku */
+  font-weight: bold;
+}

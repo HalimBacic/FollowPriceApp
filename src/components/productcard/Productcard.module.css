@@ -1,0 +1,59 @@
+/* Productcard.module.css */
+
+/* Stara podešavanja za .table ostaju, samo dodajemo nove klase: */
+.table {
+  width: 100%;
+  max-width: 95%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* 1. Centriranje sadržaja unutar ćelije (koristi se za sliku) */
+.centeredCell {
+  text-align: center; /* Centriranje teksta i inline elemenata (slika) */
+  vertical-align: middle; /* Centriranje vertikalno */
+}
+
+/* 2. Povećanje slike */
+.productImage {
+  max-width: 120px; /* Povećali smo maksimalnu širinu za sliku (npr. sa 80px na 120px) */
+  height: auto;
+  display: block; /* Važno: slika je 'block' element */
+  margin: 0 auto; /* Centriranje 'block' elementa unutar .centeredCell */
+  padding: 10px;
+}
+
+/* 3. Stilovi za cenu */
+.priceCell {
+  text-align: center; /* Centriranje cene */
+  font-size: 1.5em; /* Neka cena bude veća */
+  font-weight: bold;
+  color: #007bff; /* Neka cena bude plave boje */
+  vertical-align: middle;
+}
+
+/* Stil za formatirani datum */
+.dateCell {
+  text-align: center;
+  font-size: 1em;
+  font-family: Figtree, sans-serif;
+  font-weight: 400;
+}
+
+/* ... ostali stilovi za td/tr/prvi red ... */
+.table td {
+  padding: 10px 15px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table tr:first-child td {
+  font-weight: bold;
+  font-size: 1.2em;
+  background-color: #f8f8f8;
+  color: #333;
+}

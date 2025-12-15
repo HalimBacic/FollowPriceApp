@@ -1,0 +1,39 @@
+.priceContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+}
+
+.currentPrice, .currentPriceOnly {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+}
+
+.oldPriceWrapper {
+    display: flex;
+    align-items: center;
+    gap: 4px; 
+    margin-top: 2px;
+}
+
+.oldPrice {
+    font-size: 0.8em; /* Stara cijena manja */
+    color: #888;
+    text-decoration: line-through; /* Prekrižena stara cijena */
+}
+
+.indicator {
+    font-size: 1.0em;
+    font-weight: bold;
+}
+
+.greenDown {
+    color: green;
+}
+
+.redUp {
+    color: red;
+}

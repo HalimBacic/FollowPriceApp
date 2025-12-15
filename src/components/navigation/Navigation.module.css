@@ -1,0 +1,17 @@
+.navigationContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;      /* sve vertikalno poravnato */
+  justify-content: space-around;
+  height: 5vw;
+  gap: 1rem;                /* razmak između elemenata */
+  background-color: #5B5F97;
+}
+
+.searchContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;      /* ikonica i input u liniji */
+  gap: 0.5rem;
+  border-left: 2px solid #FFC145;
+}

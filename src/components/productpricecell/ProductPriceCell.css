@@ -1,0 +1,283 @@
+.product-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 200px;
+}
+
+.left-section {
+  flex: 1;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-right: 1px solid #e0e0e0;
+  border-radius: 12px 0 0 12px;
+  display: flex;
+  align-items: center;
+}
+
+.right-section {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.store-info {
+  width: 100%;
+}
+
+.store-name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0 0 12px 0;
+}
+
+.store-address {
+  font-size: 1rem;
+  color: #5d6d7e;
+  margin: 8px 0;
+  font-weight: 500;
+}
+
+.store-city {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin: 8px 0;
+}
+
+.price-info {
+  width: 85%;
+  background-color: white;
+  margin: 1% 2% 0 2%;
+  padding:2%;
+  border-radius: 10px;
+}
+
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.price-row {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.price-row:last-child {
+  border-bottom: none;
+}
+
+.price-label {
+  padding: 12px 8px 12px 0;
+  font-weight: 600;
+  color: #5d6d7e;
+  text-align: left;
+  vertical-align: middle;
+  width: 40%;
+  font-size: 0.95rem;
+}
+
+.price-value {
+  padding: 12px 0;
+  text-align: right;
+  vertical-align: middle;
+  width: 60%;
+}
+
+.price-value.current {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #27ae60;
+}
+
+.price-value.old {
+  font-size: 1rem;
+  color: #95a5a6;
+  text-decoration: line-through;
+}
+
+.price-value.date {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+.price-change {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  justify-content: center;
+  min-width: 80px;
+}
+
+.price-change.increase {
+  background-color: #ffeaea;
+  color: #e74c3c;
+}
+
+.price-change.decrease {
+  background-color: #e8f7ef;
+  color: #27ae60;
+}
+
+.arrow {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.change-percent {
+  font-size: 0.85rem;
+}
+
+/* Error styles */
+.product-card-error {
+  background-color: #fff5f5;
+  border-color: #fed7d7;
+  text-align: center;
+  color: #e53e3e;
+  padding: 20px;
+}
+
+.store-error {
+  color: #e53e3e;
+  font-style: italic;
+}
+
+.price-error {
+  color: #e53e3e;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .product-card {
+    flex-direction: column;
+    padding: 0;
+  }
+  
+  .left-section {
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+    border-radius: 12px 12px 0 0;
+    padding: 15px;
+  }
+  
+  .right-section {
+    padding: 15px;
+  }
+  
+  .price-table {
+    font-size: 0.9rem;
+  }
+  
+  .price-label {
+    width: 50%;
+    padding-right: 10px;
+  }
+  
+  .price-value {
+    width: 50%;
+  }
+  
+  .price-value.current {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .price-label {
+    font-size: 0.85rem;
+    width: 55%;
+  }
+  
+  .price-value {
+    width: 45%;
+    font-size: 0.85rem;
+  }
+  
+  .price-value.current {
+    font-size: 1.1rem;
+  }
+  
+  .store-name {
+    font-size: 1.2rem;
+  }
+}
+
+.storeInfo {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #2c3e50;
+  line-height: 1.4;
+  padding: 15px;
+}
+
+.storeName {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+
+.storeAddress {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #5d6d7e;
+  margin: 0 0 6px 0;
+  line-height: 1.3;
+}
+
+.storeCity {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #7f8c8d;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .storeName {
+    font-size: 1.7rem;
+  }
+  
+  .storeAddress {
+    font-size: 1.1rem;
+  }
+  
+  .storeCity {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .storeName {
+    font-size: 1.5rem;
+  }
+  
+  .storeAddress {
+    font-size: 1rem;
+  }
+  
+  .storeCity {
+    font-size: 0.85rem;
+  }
+  
+  .storeInfo {
+    padding: 10px;
+  }
+}
