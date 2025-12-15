@@ -3,10 +3,57 @@ import style from "./Navigation.module.css";
 import { Button, IconButton, Input } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Navigation = () => {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
+
+  // Logika za pretragu
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false);
+
+  useEffect(() => {
+        // Ako je input prazan → sve sakrij
+    if (query.trim() === "") {
+      setResults([]);
+      setShowOverlay(false);
+      return;
+    }
+
+    // Manje od 5 slova → ne zovi API, ali overlay još ne prikazuj
+    if (query.length < 5) {
+      setResults([]);
+      setShowOverlay(false);
+      return;
+    }
+
+    setShowOverlay(true);
+
+    const timeoutId = setTimeout(() => {
+      fetchResults();
+    }, 500);
+
+    return () => clearTimeout(timeoutId);
+  }, [query]);
+
+    const fetchResults = async () => {
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(
+        `https://api.example.com/search?q=${query}`
+      );
+      const data = await response.json();
+      setResults(data);
+    } catch (error) {
+      console.error("Greška pri pozivu API-ja", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className={style.navigationContainer}>
@@ -41,8 +88,8 @@ const Navigation = () => {
 
         <Input
           placeholder="Search"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          value={query} 
+          onChange={setQuery}
           sx={{
             fontSize: { xs: "14px", md: "18px" },
             width: { xs: "120px", sm: "200px", md: "300px" },
