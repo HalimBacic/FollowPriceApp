@@ -1,0 +1,30 @@
+.search-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.search-overlay-content {
+  margin-top: 80px;
+  width: 600px;
+  max-height: 70vh;
+  overflow-y: auto;
+
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.result-item {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import "./SearchStyle.css";
 
 const SearchItem = ({item}) => {
   return (

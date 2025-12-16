@@ -4,6 +4,8 @@ import { Button, IconButton, Input } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import service from "../../service/ProductService";
+import SearchResult from "../searchelems/SearchResult";
 
 const Navigation = () => {
   const [search, setSearch] = useState("");
@@ -16,8 +18,8 @@ const Navigation = () => {
   const [showOverlay, setShowOverlay] = useState(false);
 
   useEffect(() => {
-        // Ako je input prazan → sve sakrij
-    if (query.trim() === "") {
+    // Ako je input prazan → sve sakrij
+    if (String(query).trim() === "") {
       setResults([]);
       setShowOverlay(false);
       return;
@@ -39,14 +41,17 @@ const Navigation = () => {
     return () => clearTimeout(timeoutId);
   }, [query]);
 
-    const fetchResults = async () => {
+  const fetchResults = async () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(
-        `https://api.example.com/search?q=${query}`
-      );
+      const pattern = "\\d+";
+      var response = "";
+      if (pattern.test(query)) {
+        response = await service.getPricesByBarcode(query);
+      } else response = await service.getPricesByName(query);
       const data = await response.json();
+      console.log(data);
       setResults(data);
     } catch (error) {
       console.error("Greška pri pozivu API-ja", error);
@@ -58,7 +63,9 @@ const Navigation = () => {
   return (
     <div className={style.navigationContainer}>
       <Button
-        onClick={() => {navigate('/')}}
+        onClick={() => {
+          navigate("/");
+        }}
         sx={{
           fontSize: { xs: "14px", md: "18px" }, // manji font na mobilnom, veći na desktopu
           padding: { xs: "6px 12px", md: "10px 20px" },
@@ -88,14 +95,18 @@ const Navigation = () => {
 
         <Input
           placeholder="Search"
-          value={query} 
-          onChange={setQuery}
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
           sx={{
             fontSize: { xs: "14px", md: "18px" },
             width: { xs: "120px", sm: "200px", md: "300px" },
             color: "#FFFFFF",
           }}
         />
+
+        {showOverlay && (
+          <SearchResult results={results} isLoading={isLoading} />
+        )}
       </div>
     </div>
   );
