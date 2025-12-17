@@ -2,11 +2,14 @@ import React from "react";
 import "./SearchStyle.css";
 
 const SearchItem = ({item}) => {
+
+  console.log(item);
+
   return (
     <div>
       <div className="result-item">
-        <h4>{item.name}</h4>
-        <p>{item.barcode}</p>
+        <h4>{item.product.name}</h4>
+        <p>{item.product.barcode}</p>
       </div>
     </div>
   );

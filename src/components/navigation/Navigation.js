@@ -3,36 +3,45 @@ import style from "./Navigation.module.css";
 import { Button, IconButton, Input } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import service from "../../service/ProductService";
 import SearchResult from "../searchelems/SearchResult";
 
 const Navigation = () => {
-  const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
   // Logika za pretragu
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [showOverlay, setShowOverlay] = useState(false);
+  const [showResults, setShowResults] = useState(false);
+  const searchRef = useRef();
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setShowResults(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => {
     // Ako je input prazan → sve sakrij
     if (String(query).trim() === "") {
       setResults([]);
-      setShowOverlay(false);
+      setShowResults(false);
       return;
     }
 
     // Manje od 5 slova → ne zovi API, ali overlay još ne prikazuj
     if (query.length < 5) {
       setResults([]);
-      setShowOverlay(false);
       return;
     }
-
-    setShowOverlay(true);
+    setShowResults(true);
 
     const timeoutId = setTimeout(() => {
       fetchResults();
@@ -45,14 +54,12 @@ const Navigation = () => {
     setIsLoading(true);
 
     try {
-      const pattern = "\\d+";
+      var pattern = /\\d+/;
       var response = "";
       if (pattern.test(query)) {
         response = await service.getPricesByBarcode(query);
       } else response = await service.getPricesByName(query);
-      const data = await response.json();
-      console.log(data);
-      setResults(data);
+      setResults(response);
     } catch (error) {
       console.error("Greška pri pozivu API-ja", error);
     } finally {
@@ -93,18 +100,25 @@ const Navigation = () => {
           <SearchIcon fontSize="inherit" />
         </IconButton>
 
-        <Input
-          placeholder="Search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          sx={{
-            fontSize: { xs: "14px", md: "18px" },
-            width: { xs: "120px", sm: "200px", md: "300px" },
-            color: "#FFFFFF",
-          }}
-        />
+        <div ref={searchRef} className={style.searchContainerInput}>
+          <Input
+            placeholder="Search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onFocus={() => {
+              if (query.length >= 5) {
+                setShowResults(true);
+              }
+            }}
+            sx={{
+              fontSize: { xs: "14px", md: "18px" },
+              width: { xs: "120px", sm: "200px", md: "300px" },
+              color: "#FFFFFF",
+            }}
+          />
+        </div>
 
-        {showOverlay && (
+        {showResults && (
           <SearchResult results={results} isLoading={isLoading} />
         )}
       </div>
