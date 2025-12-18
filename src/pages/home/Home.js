@@ -11,7 +11,6 @@ const Home = () => {
   React.useEffect(() => {
     const fetchData = async () => {
       const prices = await service.getPrices(10, 1)
-      console.log(prices)
       setdata(prices)
     }
     fetchData()
