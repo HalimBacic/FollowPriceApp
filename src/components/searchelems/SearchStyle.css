@@ -7,7 +7,7 @@
 
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 1000;
-
+  pointer-events: none;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -19,7 +19,7 @@
   width: 600px;
   max-height: 70vh;
   overflow-y: auto;
-
+  pointer-events: auto;
   background: white;
   border-radius: 8px;
   padding: 16px;

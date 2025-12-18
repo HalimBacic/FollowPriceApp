@@ -24,12 +24,11 @@ const Navigation = () => {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
   useEffect(() => {
-    // Ako je input prazan → sve sakrij
     if (String(query).trim() === "") {
       setResults([]);
       setShowResults(false);
@@ -68,7 +67,7 @@ const Navigation = () => {
   };
 
   return (
-    <div className={style.navigationContainer}>
+    <div  ref={searchRef} className={`${style.searchContainerInput} ${style.navigationContainer}`}>
       <Button
         onClick={() => {
           navigate("/");
@@ -100,7 +99,7 @@ const Navigation = () => {
           <SearchIcon fontSize="inherit" />
         </IconButton>
 
-        <div ref={searchRef} className={style.searchContainerInput}>
+        <div>
           <Input
             placeholder="Search"
             value={query}

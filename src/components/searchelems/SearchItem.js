@@ -1,12 +1,19 @@
 import React from "react";
 import "./SearchStyle.css";
+import { useNavigate } from "react-router-dom";
 
 const SearchItem = ({item}) => {
 
-  console.log(item);
+  const navigate = useNavigate();
+
+  const gotoProductPage = (e) => {
+    e.stopPropagation();
+    console.log('Navigating to product page for barcode:', item.product.barcode);
+    navigate('/product/' + item.product.barcode);
+  }
 
   return (
-    <div>
+    <div onClick={gotoProductPage}>
       <div className="result-item">
         <h4>{item.product.name}</h4>
         <p>{item.product.barcode}</p>
