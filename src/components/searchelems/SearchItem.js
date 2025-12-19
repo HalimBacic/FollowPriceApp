@@ -2,21 +2,30 @@ import React from "react";
 import "./SearchStyle.css";
 import { useNavigate } from "react-router-dom";
 
-const SearchItem = ({item}) => {
-
+const SearchItem = ({ item }) => {
   const navigate = useNavigate();
 
   const gotoProductPage = (e) => {
     e.stopPropagation();
-    console.log('Navigating to product page for barcode:', item.product.barcode);
-    navigate('/product/' + item.product.barcode);
-  }
+    console.log(
+      "Navigating to product page for barcode:",
+      item.product.barcode
+    );
+    navigate("/product/" + item.product.barcode);
+  };
 
   return (
     <div onClick={gotoProductPage}>
       <div className="result-item">
-        <h4>{item.product.name}</h4>
-        <p>{item.product.barcode}</p>
+        <img
+          src={`${process.env.PUBLIC_URL}/assets/${item.product.barcode}.png`}
+          className="productImage"
+          alt="Milk"
+        />
+        <div className="basic-info">
+          <h4>{item.product.name}</h4>
+          <p>{item.product.barcode}</p>
+        </div>
       </div>
     </div>
   );

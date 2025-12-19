@@ -28,4 +28,22 @@
 .result-item {
   padding: 12px;
   border-bottom: 1px solid #eee;
+  display: flex;
+  flex-direction: row;
+}
+
+.basic-info {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+}
+
+.productImage
+{
+  max-width: 120px; /* Povećali smo maksimalnu širinu za sliku (npr. sa 80px na 120px) */
+  height: auto;
+  display: block; /* Važno: slika je 'block' element */
+  margin: 0 auto; /* Centriranje 'block' elementa unutar .centeredCell */
+  padding: 10px;
 }
