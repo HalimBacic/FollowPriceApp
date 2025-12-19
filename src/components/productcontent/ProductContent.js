@@ -29,7 +29,7 @@ function ProductContent({barcode}) {
           </tr>
           <tr>
             <td className={style.gridCell}>
-              <img src={'public/assets/${productDetails.product.barcode}.png'}  alt="Milk" className={style.productImage} />
+              <img src={`${process.env.PUBLIC_URL}/assets/${barcode}.png`}  alt="Milk" className={style.productImage} />
             </td>
             <td className={style.gridCell}>
               <ProductCell data={productDetails.product} />

@@ -38,7 +38,7 @@ const Productcard = ({productdata}) => {
 
         <tr>
           <td rowSpan="2" className={style.centeredCell}> 
-            <img src={`public/assets/"${productdata.product.barcode}.png`}   alt="Milk" className={style.productImage}/>
+            <img src={`${process.env.PUBLIC_URL}/assets/${productdata.product.barcode}.png`}   alt="Milk" className={style.productImage}/>
           </td>
           
           {/* Centriranje cene */}
