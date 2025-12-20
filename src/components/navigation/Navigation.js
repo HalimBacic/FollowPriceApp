@@ -66,6 +66,10 @@ const Navigation = () => {
     }
   };
 
+  const gotoresults = () => {
+    navigate("/search/" + query);
+  };
+
   return (
     <div  ref={searchRef} className={`${style.searchContainerInput} ${style.navigationContainer}`}>
       <Button
@@ -95,6 +99,8 @@ const Navigation = () => {
             color: "#FFC145",
             fontSize: { xs: "20px", md: "28px" },
           }}
+
+          onClick={gotoresults}
         >
           <SearchIcon fontSize="inherit" />
         </IconButton>
