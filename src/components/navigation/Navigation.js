@@ -71,7 +71,10 @@ const Navigation = () => {
   };
 
   return (
-    <div  ref={searchRef} className={`${style.searchContainerInput} ${style.navigationContainer}`}>
+    <div
+      ref={searchRef}
+      className={`${style.searchContainerInput} ${style.navigationContainer}`}
+    >
       <Button
         onClick={() => {
           navigate("/");
@@ -99,7 +102,6 @@ const Navigation = () => {
             color: "#FFC145",
             fontSize: { xs: "20px", md: "28px" },
           }}
-
           onClick={gotoresults}
         >
           <SearchIcon fontSize="inherit" />
@@ -124,7 +126,19 @@ const Navigation = () => {
         </div>
 
         {showResults && (
-          <SearchResult results={results} isLoading={isLoading} />
+          <div className={style.searchResultWrapper}>
+            <button
+              className={style.searchResultClose}
+              onClick={() => {
+                setShowResults(false);
+              }}
+              aria-label="Close search results"
+            >
+              ✕
+            </button>
+
+            <SearchResult results={results} isLoading={isLoading} />
+          </div>
         )}
       </div>
     </div>

@@ -39,7 +39,7 @@ class ProductService {
       return response.data;
     } catch (error) {
       console.error("Greška prilikom dohvatanja cijena po imenu:", error);
-      return [AllProductTemplate];
+      return AllProductTemplate;
     }
   }
 
@@ -55,7 +55,7 @@ class ProductService {
       return response.data;
     } catch (error) {
       console.error("Greška prilikom dohvatanja cijena po barkodu:", error);
-      return [AllProductTemplate];
+      return AllProductTemplate;
     }
   }
 }
