@@ -1,0 +1,30 @@
+name: React CI/CD
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      # Use a specific version of Node.js, e.g., 18.x, 20.x, etc.
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22.x'
+        cache: 'npm' # Caches dependencies to speed up subsequent runs
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build application
+      run: npm run build
