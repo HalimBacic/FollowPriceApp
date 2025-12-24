@@ -24,7 +24,7 @@ jobs:
         cache: 'npm' # Caches dependencies to speed up subsequent runs
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci
 
     - name: Build application
       run: npm run build
