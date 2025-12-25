@@ -7,7 +7,7 @@ import ProductPriceList from "./ProductPriceList";
 // import * as service from "../../service/priceService";
 
 function ProductContent({barcode}) {
-  const [productDetails, setProductDetails] = useState(ProductDataTemplate);
+  // const [productDetails, setProductDetails] = useState(ProductDataTemplate);
   // const [data, setdata] = useState([])
 
   // React.useEffect(() => {
@@ -18,6 +18,7 @@ function ProductContent({barcode}) {
   //   fetchData()
   // }, [])
 
+  const productDetails = ProductDataTemplate; // Za sada koristimo statički template
   return (
     <div>
       <table className={style.productGrid}> 

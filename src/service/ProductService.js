@@ -59,4 +59,6 @@ class ProductService {
     }
   }
 }
-export default new ProductService();
+
+const apiService = new ApiService();
+export default apiService;

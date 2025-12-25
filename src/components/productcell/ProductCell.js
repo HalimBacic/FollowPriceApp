@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./ProductCell.module.css";
 
 // Funkcija za formatiranje datuma
@@ -19,15 +18,11 @@ const ProductCell = ({ data = {} }) => {
   const {
     producttype = "FOOD",
     producer = "Random Producer",
-    quantitytype = "kom",
-    quantityprice = 1.1,
     weight = 100,
-    diff = 0.5,
     expdate = "10.10.2025.",
   } = data;
 
   // Određivanje klase za prikaz razlike
-  const diffClass = diff >= 0 ? styles.positiveDiff : styles.negativeDiff;
   return (
     <div>
       <table>

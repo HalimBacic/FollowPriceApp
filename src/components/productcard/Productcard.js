@@ -1,4 +1,3 @@
-import React, { use } from "react";
 import style from "./Productcard.module.css";
 import { useNavigate } from "react-router-dom";
 import ProductPriceCell from "./ProductPriceCell";

@@ -1,4 +1,3 @@
-import React from "react";
 import service from "../../service/ProductService";
 import Navigation from "../../components/navigation/Navigation";
 import Productcard from "../../components/productcard/Productcard";
@@ -6,10 +5,10 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const SearchPage = () => {
-  const { query } = useParams();
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    const { query } = useParams();
     const fetchResults = async () => {
       try {
         var pattern = /\\d+/;

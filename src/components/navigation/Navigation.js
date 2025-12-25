@@ -29,6 +29,23 @@ const Navigation = () => {
   }, []);
 
   useEffect(() => {
+    const fetchResults = async () => {
+      setIsLoading(true);
+
+      try {
+        var pattern = /\\d+/;
+        var response = "";
+        if (pattern.test(query)) {
+          response = await service.getPricesByBarcode(query);
+        } else response = await service.getPricesByName(query);
+        setResults(response);
+      } catch (error) {
+        console.error("Greška pri pozivu API-ja", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
     if (String(query).trim() === "") {
       setResults([]);
       setShowResults(false);
@@ -49,29 +66,15 @@ const Navigation = () => {
     return () => clearTimeout(timeoutId);
   }, [query]);
 
-  const fetchResults = async () => {
-    setIsLoading(true);
-
-    try {
-      var pattern = /\\d+/;
-      var response = "";
-      if (pattern.test(query)) {
-        response = await service.getPricesByBarcode(query);
-      } else response = await service.getPricesByName(query);
-      setResults(response);
-    } catch (error) {
-      console.error("Greška pri pozivu API-ja", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   const gotoresults = () => {
     navigate("/search/" + query);
   };
 
   return (
-    <div  ref={searchRef} className={`${style.searchContainerInput} ${style.navigationContainer}`}>
+    <div
+      ref={searchRef}
+      className={`${style.searchContainerInput} ${style.navigationContainer}`}
+    >
       <Button
         onClick={() => {
           navigate("/");
@@ -99,7 +102,6 @@ const Navigation = () => {
             color: "#FFC145",
             fontSize: { xs: "20px", md: "28px" },
           }}
-
           onClick={gotoresults}
         >
           <SearchIcon fontSize="inherit" />

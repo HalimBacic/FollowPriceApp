@@ -1,7 +1,6 @@
-import React, { use, useState } from 'react'
+import React, { useState } from 'react'
 import Navigation from '../../components/navigation/Navigation'
 import service from '../../service/ProductService'
-import ProductPage from '../product/ProductPage'
 import Productcard from '../../components/productcard/Productcard'
 
 const Home = () => {
