@@ -1,5 +1,3 @@
-import React from "react";
-import { useState } from "react";
 import style from "./Productcontent.module.css";
 import ProductDataTemplate  from "../../templates/ProductDataTemplate";
 import ProductCell from "../productcell/ProductCell";
