@@ -60,5 +60,5 @@ class ProductService {
   }
 }
 
-const apiService = new ApiService();
+const apiService = new ProductService();
 export default apiService;

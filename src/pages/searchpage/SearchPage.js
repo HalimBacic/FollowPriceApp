@@ -6,9 +6,9 @@ import { useState, useEffect } from "react";
 
 const SearchPage = () => {
   const [data, setData] = useState([]);
+      const { query } = useParams();
 
   useEffect(() => {
-    const { query } = useParams();
     const fetchResults = async () => {
       try {
         var pattern = /\\d+/;
@@ -23,7 +23,7 @@ const SearchPage = () => {
     };
 
     fetchResults();
-  }, []);
+  }, [query]);
 
   return (
     <div>
