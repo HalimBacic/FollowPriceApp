@@ -20,9 +20,9 @@
 }
 
 .oldPrice {
-    font-size: 0.8em; /* Stara cijena manja */
+    font-size: 0.8em; 
     color: #888;
-    text-decoration: line-through; /* Prekrižena stara cijena */
+    text-decoration: line-through; 
 }
 
 .indicator {

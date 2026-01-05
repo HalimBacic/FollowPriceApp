@@ -52,7 +52,6 @@ const Navigation = () => {
       return;
     }
 
-    // Manje od 5 slova → ne zovi API, ali overlay još ne prikazuj
     if (query.length < 5) {
       setResults([]);
       return;
@@ -80,7 +79,7 @@ const Navigation = () => {
           navigate("/");
         }}
         sx={{
-          fontSize: { xs: "14px", md: "18px" }, // manji font na mobilnom, veći na desktopu
+          fontSize: { xs: "14px", md: "18px" },
           padding: { xs: "6px 12px", md: "10px 20px" },
           backgroundColor: "transparent",
           color: "#FFC145",
@@ -88,7 +87,7 @@ const Navigation = () => {
           fontWeight: "600",
           boxShadow: "none",
           "&:hover": {
-            backgroundColor: "transparent", // skida hover pozadinu
+            backgroundColor: "transparent", 
             boxShadow: "none",
           },
         }}

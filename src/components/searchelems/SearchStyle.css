@@ -41,9 +41,9 @@
 
 .productImage
 {
-  max-width: 120px; /* Povećali smo maksimalnu širinu za sliku (npr. sa 80px na 120px) */
+  max-width: 120px; 
   height: auto;
-  display: block; /* Važno: slika je 'block' element */
-  margin: 0 auto; /* Centriranje 'block' elementa unutar .centeredCell */
+  display: block; 
+  margin: 0 auto; 
   padding: 10px;
 }

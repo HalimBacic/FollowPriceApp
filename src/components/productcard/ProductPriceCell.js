@@ -10,7 +10,6 @@ const ProductPriceCell = ({currentPrice, oldPrice}) => {
     );
   }
 
-  // Određivanje promjene i stila
   let trendIndicator = null;
   let indicatorStyle = '';
 

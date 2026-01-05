@@ -22,7 +22,6 @@ const ProductCell = ({ data = {} }) => {
     expdate = "10.10.2025.",
   } = data;
 
-  // Određivanje klase za prikaz razlike
   return (
     <div>
       <table>
