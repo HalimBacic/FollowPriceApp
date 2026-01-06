@@ -1,68 +1,72 @@
 import React from "react";
-import './ProductPriceCell.css'
+import "./ProductPriceCell.css";
 
 const PriceInfo = ({ product }) => {
   const currentPrice = Number(product.price) || 0;
   const previousPrice = Number(product.oldprice) || 0;
-  
+
   const isValidPrice = !isNaN(currentPrice) && !isNaN(previousPrice);
   const priceIncreased = isValidPrice ? currentPrice > previousPrice : false;
-  const priceChange = isValidPrice ? 
-    ((currentPrice - previousPrice) / previousPrice * 100).toFixed(1) : '0.0';
+  const priceChange = isValidPrice
+    ? ((currentPrice - previousPrice) / previousPrice * 100).toFixed(1)
+    : "0.0";
 
   const formatDate = (dateString) => {
-    if (!dateString) return 'Datum nije dostupan';
-    
-    try {
-      const date = new Date(dateString);
-      return date.toLocaleDateString('bs-BA', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric'
-      });
-    } catch (error) {
-      return 'Nevažeći datum';
-    }
+    if (!dateString) return "Datum nije dostupan";
+    const date = new Date(dateString);
+    return date.toLocaleDateString("bs-BA", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
   };
 
   if (!isValidPrice) {
     return (
-      <div className="price-info">
-        <div className="price-error">Data about price not available</div>
+      <div className="price-card error">
+        Data about price not available
       </div>
     );
   }
 
   return (
-    <div className="price-info">
-      <h1 className="store-name">{product.store.name}</h1>
-      <h3 className="store-address">{product.store.address}</h3>
-      <h4 className="store-city">{product.store.city}</h4>
-      <table className="price-table">
-        <tbody>
-          <tr className="price-row">
-            <td className="price-label">Current price:</td>
-            <td className="price-value current">€{currentPrice.toFixed(2)}</td>
-          </tr>
-          <tr className="price-row">
-            <td className="price-label">Old price:</td>
-            <td className="price-value old">€{previousPrice.toFixed(2)}</td>
-          </tr>
-          <tr className="price-row">
-            <td className="price-label">Difference:</td>
-            <td className="price-value">
-              <div className={`price-change ${priceIncreased ? "increase" : "decrease"}`}>
-                <span className="arrow">{priceIncreased ? "↑" : "↓"}</span>
-                <span className="change-percent">{Math.abs(priceChange)}%</span>
-              </div>
-            </td>
-          </tr>
-          <tr className="price-row">
-            <td className="price-label">Change date:</td>
-            <td className="price-value date">{formatDate(product.lastchange)}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div className="price-card">
+      {/* Store info */}
+      <div className="store-info">
+        <div className="store-name">{product.store.name}</div>
+        <div className="store-address">{product.store.address}</div>
+        <div className="store-city">{product.store.city}</div>
+      </div>
+
+      {/* Prices */}
+      <div className="price-section">
+        <div className="price-row">
+          <span>Current</span>
+          <strong className="current">€{currentPrice.toFixed(2)}</strong>
+        </div>
+
+        <div className="price-row">
+          <span>Old</span>
+          <span className="old">€{previousPrice.toFixed(2)}</span>
+        </div>
+
+        <div className="price-row">
+          <span>Difference</span>
+          <div
+            className={`price-change ${
+              priceIncreased ? "increase" : "decrease"
+            }`}
+          >
+            <span className="arrow">{priceIncreased ? "↑" : "↓"}</span>
+            <span>{Math.abs(priceChange)}%</span>
+          </div>
+        </div>
+
+        <div className="price-row date">
+          <span>Change date </span>
+          <span>{formatDate(product.lastchange)}</span>
+        </div>
+      </div>
     </div>
   );
 };
