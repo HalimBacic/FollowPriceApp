@@ -1,7 +1,6 @@
 .products-list {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
 }
 
 .products-list-title {
@@ -14,9 +13,9 @@
 
 .products-list-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); 
-  grid-template-rows: repeat(2, 1fr);    
-  gap: 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  place-items: center;
 }
 
 .products-list-empty {
