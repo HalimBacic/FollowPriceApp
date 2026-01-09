@@ -10,7 +10,7 @@ function ProductContent({barcode}) {
 
   // React.useEffect(() => {
   //   const fetchData = async () => {
-  //     const prices = await service.etPricesByBarcode(barcode);
+  //     const prices = await service.getPricesByBarcode(barcode);
   //     setdata(prices)
   //   }
   //   fetchData()
