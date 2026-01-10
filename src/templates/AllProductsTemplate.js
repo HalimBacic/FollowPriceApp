@@ -29,14 +29,14 @@ const AllProductTemplate = {
     },
 
     // Podaci iz StoreDtoSimple (ugniježdeni)
-    store: {
+    store: [{
         id: "ST001",
         name: "Maxi Market Centar",
         address: "Glavna Ulica 5",
         city: "Sarajevo",
         phone: "033-111-222",
         email: "info@maximarket.ba"
-    }
+    }]
 };
 
 export default AllProductTemplate; 

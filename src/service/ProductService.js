@@ -43,7 +43,7 @@ class ProductService {
     }
   }
 
-  async getPricesByBarcode(barcode) {
+   async getPricesByBarcode(barcode) {
     try {
       const response = await this.api.get(`/get/barcode=${barcode}`);
 
@@ -55,7 +55,7 @@ class ProductService {
       return response.data;
     } catch (error) {
       console.error("Greška prilikom dohvatanja cijena po barkodu:", error);
-      return [AllProductTemplate];
+      return AllProductTemplate;
     }
   }
 }
