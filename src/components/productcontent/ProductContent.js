@@ -13,10 +13,11 @@ function ProductContent({ barcode }) {
       console.log("Fetching data for barcode:", barcode);
       const prices = await service.getPricesByBarcode(barcode);
       setdata(prices);
+      setLoading(false);
       console.log(prices);
     };
     fetchData();
-  }, []);
+  }, [barcode]);
 
   if (loading) {
     return <div className={style.loading}>Učitavanje...</div>;

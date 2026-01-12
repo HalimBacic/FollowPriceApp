@@ -11,7 +11,7 @@ const SortComponent = ({ options = [], onChange, defaultSort }) => {
     } else {
       onChange({ field, direction });
     }
-  }, [field, direction]);
+  }, [field, direction, onChange]);
 
   return (    <div>
       <select value={field} onChange={e => setField(e.target.value)}>

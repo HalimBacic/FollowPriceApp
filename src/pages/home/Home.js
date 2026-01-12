@@ -25,9 +25,9 @@ const Home = () => {
     setdata(prices);
   }
 
-  function handleSort(sort) {
+  function handleSort(sorts) {
+    setSort(sorts);
     console.log("Sorting by:", sort);
-    setSort(sort);
   }
 
   return (
