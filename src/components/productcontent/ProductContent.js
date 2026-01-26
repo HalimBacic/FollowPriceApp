@@ -3,11 +3,25 @@ import ProductCell from "../productcell/ProductCell";
 import ProductPriceList from "./ProductPriceList";
 import React, { useState, useEffect } from "react";
 import service from "../../service/ProductService";
+import PaginationComponent from "../../components/pagination/PaginationComponent";
+import SortComponent from "../../components/sortcomponent/SortComponent";
 
 function ProductContent({ barcode }) {
   const [data, setdata] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [sort, setSort] = useState(null);
 
+  async function changePage(newPage) {
+    setPage(newPage);
+    const prices = await service.getPrices(10, newPage);
+    setdata(prices);
+  }
+
+  function handleSort(sorts) {
+    setSort(sorts);
+    console.log("Sorting by:", sort);
+  }
   useEffect(() => {
     const fetchData = async () => {
       console.log("Fetching data for barcode:", barcode);
@@ -50,7 +64,18 @@ function ProductContent({ barcode }) {
           </tr>
         </tbody>
       </table>
-      <ProductPriceList productsprices={data.prices} />
+      <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center", margin: "10px" }}>
+        <PaginationComponent
+          page={page}
+          totalPages={10}
+          onPageChange={changePage}
+        />
+        <SortComponent
+          onChange={handleSort}
+          options={[{ label: "Price", value: "price" }]}
+        ></SortComponent>
+      </div>
+      <ProductPriceList productsprices={data} />
     </div>
   );
 }
