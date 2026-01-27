@@ -33,7 +33,7 @@ const Home = () => {
   return (
     <div>
       <Navigation />
-      <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center", margin: "10px" }}>
+      <div style={{ display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "center", margin: "10px" }}>
         <PaginationComponent
           page={page}
           totalPages={10}

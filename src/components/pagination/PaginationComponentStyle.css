@@ -1,0 +1,19 @@
+.icon-arrow {
+  background: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: #5b5f97;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-arrow svg {
+  font-size: 22px; 
+  font-weight: 700;     
+}
+
+.icon-arrow .MuiSvgIcon-root {
+  font-size: 25px;
+}
