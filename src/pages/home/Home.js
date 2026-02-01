@@ -13,7 +13,8 @@ const Home = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const prices = await service.getPrices(10, 1);
+      const prices = await service.getPrices(1);
+      console.log("Data:"  + prices);
       setdata(prices);
     };
     fetchData();
@@ -21,7 +22,7 @@ const Home = () => {
 
   async function changePage(newPage) {
     setPage(newPage);
-    const prices = await service.getPrices(10, newPage);
+    const prices = await service.getPrices(page);
     setdata(prices);
   }
 
@@ -33,7 +34,7 @@ const Home = () => {
   return (
     <div>
       <Navigation />
-      <div style={{ display: "flex", flexDirection: "row", justifyContent: "flex-start", alignItems: "center", margin: "10px" }}>
+      <div style={{ display: "flex", width: "15%", flexDirection: "row", justifyContent: "space-between", alignItems: "center", margin: "20px" }}>
         <PaginationComponent
           page={page}
           totalPages={10}
@@ -45,7 +46,7 @@ const Home = () => {
         ></SortComponent>
       </div>
       <div className="products-grid">
-        {data.map((item) => (
+        {data && data.prices && data.prices.map((item) => (
           <Productcard productdata={item} />
         ))}
       </div>

@@ -3,23 +3,23 @@ import AllProductTemplate from "../templates/AllProductsTemplate";
 
 class ProductService {
   api = axios.create({
-    baseURL: "http://localhost:3000/products",
+    baseURL: "http://localhost:8001/",
     headers: {
       "Content-type": "application/json",
     },
   });
 
-  async getPrices(pageSize, pageNum) {
+  async getPrices(pageNum) {
     try {
       const response = await this.api.get(
-        `/get/pagesize=${pageSize}&pagenum=${pageNum}`
+        `/get/${pageNum}`
       );
 
       // Ako je backend vratio 204 No Content
       if (response.status === 204) {
         return [];
       }
-
+      console.log("Dohvaćeni podaci:", response.data);
       return response.data;
     } catch (error) {
       console.error("Greška prilikom dohvatanja cijena:", error);
