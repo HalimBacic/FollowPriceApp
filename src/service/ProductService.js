@@ -43,9 +43,9 @@ class ProductService {
     }
   }
 
-   async getPricesByBarcode(barcode) {
+   async getPricesByBarcode(barcode, page) {
     try {
-      const response = await this.api.get(`/get/barcode=${barcode}`);
+      const response = await this.api.get(`/get`, { params: { barcode: barcode, page: page } });
 
       // Ako je backend vratio 204 No Content
       if (response.status === 204) {

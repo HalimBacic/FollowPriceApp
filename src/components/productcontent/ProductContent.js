@@ -14,7 +14,7 @@ function ProductContent({ barcode }) {
 
   async function changePage(newPage) {
     setPage(newPage);
-    const prices = await service.getPrices(10, newPage);
+    const prices = await service.getPricesByBarcode(barcode, newPage);
     setdata(prices);
   }
 
@@ -25,7 +25,7 @@ function ProductContent({ barcode }) {
   useEffect(() => {
     const fetchData = async () => {
       console.log("Fetching data for barcode:", barcode);
-      const prices = await service.getPricesByBarcode(barcode);
+      const prices = await service.getPricesByBarcode(barcode, 1);
       setdata(prices);
       setLoading(false);
       console.log(prices);
