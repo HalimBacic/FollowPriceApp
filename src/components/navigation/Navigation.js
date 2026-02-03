@@ -36,7 +36,7 @@ const Navigation = () => {
         var pattern = /\\d+/;
         var response = "";
         if (pattern.test(query)) {
-          response = await service.getPricesByBarcode(query);
+          response = await service.getPricesByBarcode(query, 1);
         } else response = await service.getPricesByName(query);
         setResults(response);
       } catch (error) {

@@ -29,7 +29,7 @@ class ProductService {
 
   async getPricesByName(name) {
     try {
-      const response = await this.api.get(`/get/name=${name}`);
+      const response = await this.api.get(`/getbyname`, { params: { name: name } });
 
       // Ako je backend vratio 204 No Content
       if (response.status === 204) {
@@ -45,7 +45,7 @@ class ProductService {
 
    async getPricesByBarcode(barcode, page) {
     try {
-      const response = await this.api.get(`/get`, { params: { barcode: barcode, page: page } });
+      const response = await this.api.get(`/getbybarcode`, { params: { barcode: barcode, page: page } });
 
       // Ako je backend vratio 204 No Content
       if (response.status === 204) {
