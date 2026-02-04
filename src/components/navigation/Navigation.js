@@ -32,12 +32,9 @@ const Navigation = () => {
     const fetchResults = async () => {
       setIsLoading(true);
 
+      var response = "";
       try {
-        var pattern = /\\d+/;
-        var response = "";
-        if (pattern.test(query)) {
-          response = await service.getPricesByBarcode(query, 1);
-        } else response = await service.getPricesByName(query);
+        response = await service.getPricesBySearch(query);
         setResults(response);
       } catch (error) {
         console.error("Greška pri pozivu API-ja", error);
@@ -87,7 +84,7 @@ const Navigation = () => {
           fontWeight: "600",
           boxShadow: "none",
           "&:hover": {
-            backgroundColor: "transparent", 
+            backgroundColor: "transparent",
             boxShadow: "none",
           },
         }}

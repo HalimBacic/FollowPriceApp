@@ -11,11 +11,8 @@ class ProductService {
 
   async getPrices(pageNum) {
     try {
-      const response = await this.api.get(
-        `/get/${pageNum}`
-      );
+      const response = await this.api.get(`/get/${pageNum}`);
 
-      // Ako je backend vratio 204 No Content
       if (response.status === 204) {
         return [];
       }
@@ -29,9 +26,10 @@ class ProductService {
 
   async getPricesByName(name) {
     try {
-      const response = await this.api.get(`/getbyname`, { params: { name: name } });
+      const response = await this.api.get(`/getbyname`, {
+        params: { term: name },
+      });
 
-      // Ako je backend vratio 204 No Content
       if (response.status === 204) {
         return [];
       }
@@ -43,11 +41,12 @@ class ProductService {
     }
   }
 
-   async getPricesByBarcode(barcode, page) {
+  async getPricesByBarcode(barcode, page) {
     try {
-      const response = await this.api.get(`/getbybarcode`, { params: { barcode: barcode, page: page } });
+      const response = await this.api.get(`/getbybarcode`, {
+        params: { barcode: barcode, page: page },
+      });
 
-      // Ako je backend vratio 204 No Content
       if (response.status === 204) {
         return [];
       }
@@ -55,7 +54,24 @@ class ProductService {
       return response.data;
     } catch (error) {
       console.error("Greška prilikom dohvatanja cijena po barkodu:", error);
-      return  AllProductTemplate;
+      return AllProductTemplate;
+    }
+  }
+
+  async getPricesBySearch(query) {
+    try {
+      const response = await this.api.get(`/search`, {
+        params: { term: query },
+      });
+
+      if (response.status === 204) {
+        return [];
+      }
+
+      return response.data;
+    } catch (error) {
+      console.error("Greška prilikom dohvatanja cijena po pretrazi:", error);
+      return [AllProductTemplate];
     }
   }
 }
