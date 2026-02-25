@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useAuth } from "../authsuccess/AuthContext";
 import style from "./Navigation.module.css";
 import { Button, IconButton, Input } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
@@ -6,8 +7,11 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import service from "../../service/ProductService";
 import SearchResult from "../searchelems/SearchResult";
+import { FcGoogle } from "react-icons/fc";
+import { BsCart3 } from "react-icons/bs";
 
 const Navigation = () => {
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
 
   // Logika za pretragu
@@ -125,6 +129,48 @@ const Navigation = () => {
           <SearchResult results={results} isLoading={isLoading} />
         )}
       </div>
+      {!user && (
+        <Button
+          onClick={() => {
+            window.location.href = "http://localhost:8000/login"; // ← direktno na Python backend
+          }}
+          sx={{
+            fontSize: { xs: "14px", md: "18px" },
+            padding: { xs: "6px 12px", md: "10px 20px" },
+            backgroundColor: "transparent",
+            color: "#FFC145",
+            fontFamily: "Figtree, sans-serif",
+            fontWeight: "600",
+            boxShadow: "none",
+            "&:hover": {
+              backgroundColor: "transparent",
+              boxShadow: "none",
+            },
+          }}
+        >
+          Sign in
+          <FcGoogle size={20} />
+        </Button>
+      )}
+      {!user && (
+        <Button
+          sx={{
+            fontSize: { xs: "14px", md: "18px" },
+            padding: { xs: "6px 12px", md: "10px 20px" },
+            backgroundColor: "transparent",
+            color: "#FFC145",
+            fontFamily: "Figtree, sans-serif",
+            fontWeight: "600",
+            boxShadow: "none",
+            "&:hover": {
+              backgroundColor: "transparent",
+              boxShadow: "none",
+            },
+          }}
+        >
+          <BsCart3 size={20} />
+        </Button>
+      )}
     </div>
   );
 };

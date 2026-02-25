@@ -14,7 +14,6 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       const prices = await service.getPrices(1);
-      console.log("Data:"  + prices);
       setdata(prices);
     };
     fetchData();
@@ -37,7 +36,7 @@ const Home = () => {
       <div style={{ display: "flex", width: "15%", flexDirection: "row", justifyContent: "space-between", alignItems: "center", margin: "20px" }}>
         <PaginationComponent
           page={page}
-          totalPages={10}
+          totalPages={data && data.totalPages ? data.totalPages : 1}
           onPageChange={changePage}
         />
         <SortComponent
