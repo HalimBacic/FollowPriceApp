@@ -96,81 +96,101 @@ const Navigation = () => {
         Home
       </Button>
 
-      <div className={style.searchContainer}>
-        <IconButton
-          sx={{
-            color: "#FFC145",
-            fontSize: { xs: "20px", md: "28px" },
-          }}
-          onClick={gotoresults}
-        >
-          <SearchIcon fontSize="inherit" />
-        </IconButton>
+      <div className={style.rightside}>
+        <div className={style.searchContainer}>
+          <IconButton
+            sx={{
+              color: "#FFC145",
+              fontSize: { xs: "20px", md: "28px" },
+            }}
+            onClick={gotoresults}
+          >
+            <SearchIcon fontSize="inherit" />
+          </IconButton>
 
-        <div>
-          <Input
-            placeholder="Search"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            onFocus={() => {
-              if (query.length >= 5) {
-                setShowResults(true);
-              }
+          <div>
+            <Input
+              placeholder="Search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onFocus={() => {
+                if (query.length >= 5) {
+                  setShowResults(true);
+                }
+              }}
+              sx={{
+                fontSize: { xs: "14px", md: "18px" },
+                width: { xs: "120px", sm: "200px", md: "300px" },
+                color: "#FFFFFF",
+              }}
+            />
+          </div>
+
+          {showResults && (
+            <SearchResult results={results} isLoading={isLoading} />
+          )}
+        </div>
+        {!user && (
+          <Button
+            onClick={() => {
+              window.location.href = "http://localhost:8001/login"; // ← direktno na Python backend
             }}
             sx={{
               fontSize: { xs: "14px", md: "18px" },
-              width: { xs: "120px", sm: "200px", md: "300px" },
-              color: "#FFFFFF",
+              padding: { xs: "6px 12px", md: "10px 20px" },
+              backgroundColor: "transparent",
+              color: "#FFC145",
+              fontFamily: "Figtree, sans-serif",
+              fontWeight: "600",
+              boxShadow: "none",
+              "&:hover": {
+                backgroundColor: "transparent",
+                boxShadow: "none",
+              },
             }}
-          />
-        </div>
-
-        {showResults && (
-          <SearchResult results={results} isLoading={isLoading} />
+          >
+            Signin&nbsp;
+            <FcGoogle size={20} />
+          </Button>
         )}
+        {user && (
+          <Button
+            sx={{
+              fontSize: { xs: "14px", md: "18px" },
+              padding: { xs: "6px 12px", md: "10px 20px" },
+              backgroundColor: "transparent",
+              color: "#FFC145",
+              fontFamily: "Figtree, sans-serif",
+              fontWeight: "600",
+              boxShadow: "none",
+              "&:hover": {
+                backgroundColor: "transparent",
+                boxShadow: "none",
+              },
+            }}
+          >
+            <BsCart3 size={20} />
+          </Button>
+        )}
+        {user && (<Button
+            onClick={() => {logout(); navigate("/");}}
+            sx={{
+              fontSize: { xs: "14px", md: "18px" },
+              padding: { xs: "6px 12px", md: "10px 20px" },
+              backgroundColor: "transparent",
+              color: "#FFC145",
+              fontFamily: "Figtree, sans-serif",
+              fontWeight: "600",
+              boxShadow: "none",
+              "&:hover": {
+                backgroundColor: "transparent",
+                boxShadow: "none",
+              },
+            }}
+          >
+            Logout
+          </Button>)}
       </div>
-      {!user && (
-        <Button
-          onClick={() => {
-            window.location.href = "http://localhost:8000/login"; // ← direktno na Python backend
-          }}
-          sx={{
-            fontSize: { xs: "14px", md: "18px" },
-            padding: { xs: "6px 12px", md: "10px 20px" },
-            backgroundColor: "transparent",
-            color: "#FFC145",
-            fontFamily: "Figtree, sans-serif",
-            fontWeight: "600",
-            boxShadow: "none",
-            "&:hover": {
-              backgroundColor: "transparent",
-              boxShadow: "none",
-            },
-          }}
-        >
-          Sign in
-          <FcGoogle size={20} />
-        </Button>
-      )}
-      {!user && (
-        <Button
-          sx={{
-            fontSize: { xs: "14px", md: "18px" },
-            padding: { xs: "6px 12px", md: "10px 20px" },
-            backgroundColor: "transparent",
-            color: "#FFC145",
-            fontFamily: "Figtree, sans-serif",
-            fontWeight: "600",
-            boxShadow: "none",
-            "&:hover": {
-              backgroundColor: "transparent",
-              boxShadow: "none",
-            },
-          }}
-        >
-          <BsCart3 size={20} />
-        </Button>
-      )}
     </div>
   );
 };

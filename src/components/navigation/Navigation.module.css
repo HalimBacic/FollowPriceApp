@@ -19,3 +19,10 @@
 .searchContainerInput {
   position: relative;
 }
+
+.rightside
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
