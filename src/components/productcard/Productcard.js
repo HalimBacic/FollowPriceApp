@@ -1,6 +1,9 @@
 import style from "./Productcard.module.css";
 import { useNavigate } from "react-router-dom";
 import ProductPriceCell from "./ProductPriceCell";
+import { BsCart3 } from "react-icons/bs";
+import { Button } from "@mui/material";
+import { useAuth } from "../authsuccess/AuthContext";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -12,6 +15,7 @@ const formatDate = (dateString) => {
 };
 
 const Productcard = ({ productdata }) => {
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
   const formattedLastChange = formatDate(productdata.lastchange);
 
@@ -21,11 +25,8 @@ const Productcard = ({ productdata }) => {
 
   return (
     <div className={style.card} onClick={goToProductPage}>
-      
       {/* Naziv */}
-      <div className={style.title}>
-        {productdata.product.name}
-      </div>
+      <div className={style.title}>{productdata.product.name}</div>
 
       <div className={style.centerContent}>
         <img
@@ -40,16 +41,38 @@ const Productcard = ({ productdata }) => {
         />
       </div>
 
-      {/* Barcode */}
-      <div className={style.barcode}>
-        {productdata.product.barcode}
-      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          flexDirection: "row",
+          alignItems: "center",
+          gap: "16px",
+        }}
+      >
+        {/* Barcode i Datum - jedan ispod drugog */}
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div className={style.barcode}>{productdata.product.barcode}</div>
+          <div className={style.date}>{formattedLastChange}</div>
+        </div>
 
-      {/* Datum */}
-      <div className={style.date}>
-        {formattedLastChange}
+        {/* Add to cart dugme */}
+        {user && <Button
+          variant="contained"
+          startIcon={<BsCart3 size={20} />}
+          sx={{
+            backgroundColor: "#FFC145",
+            color: "#000",
+            fontFamily: "Figtree, sans-serif",
+            fontWeight: "600",
+            "&:hover": {
+              backgroundColor: "#e6ac3a",
+            },
+          }}
+        >
+          Add to cart
+        </Button>}
       </div>
-
     </div>
   );
 };
