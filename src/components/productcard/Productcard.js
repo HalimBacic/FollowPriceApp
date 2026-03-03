@@ -4,6 +4,7 @@ import ProductPriceCell from "./ProductPriceCell";
 import { BsCart3 } from "react-icons/bs";
 import { Button } from "@mui/material";
 import { useAuth } from "../authsuccess/AuthContext";
+import productService from "../../service/ProductService";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -13,6 +14,11 @@ const formatDate = (dateString) => {
     day: "2-digit",
   });
 };
+
+const addToCart = async (barcode, email) => {
+  console.log("Adding to cart:", barcode, email);
+  await productService.addProductForUser(barcode, email);
+}
 
 const Productcard = ({ productdata }) => {
   const { user, logout } = useAuth();
@@ -59,6 +65,7 @@ const Productcard = ({ productdata }) => {
         {/* Add to cart dugme */}
         {user && <Button
           variant="contained"
+          onClick={async () => await addToCart(productdata.product.barcode, user.email)}
           startIcon={<BsCart3 size={20} />}
           sx={{
             backgroundColor: "#FFC145",

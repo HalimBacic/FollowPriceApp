@@ -74,6 +74,20 @@ class ProductService {
       return [AllProductTemplate];
     }
   }
+
+  async addProductForUser(barcode, email) {
+        try {
+      const response = await this.api.post(`/addproductforuser`,
+        { barcode: barcode, email: email });
+
+      if (response.status === 201) 
+        return true;
+    } catch (error) {
+      console.error("Greška prilikom dodavanja proizvoda korisniku:", error);
+      return false;
+    }
+
+  }
 }
 
 const apiService = new ProductService();
