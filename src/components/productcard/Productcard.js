@@ -65,7 +65,9 @@ const Productcard = ({ productdata }) => {
         {/* Add to cart dugme */}
         {user && <Button
           variant="contained"
-          onClick={async () => await addToCart(productdata.product.barcode, user.email)}
+          onClick={async (e) => {
+            e.stopPropagation(); 
+            await addToCart(productdata.product.barcode, user.email);}}
           startIcon={<BsCart3 size={20} />}
           sx={{
             backgroundColor: "#FFC145",
