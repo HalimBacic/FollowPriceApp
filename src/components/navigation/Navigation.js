@@ -9,6 +9,7 @@ import service from "../../service/ProductService";
 import SearchResult from "../searchelems/SearchResult";
 import { FcGoogle } from "react-icons/fc";
 import { BsCart3 } from "react-icons/bs";
+import { Badge } from "@mui/material";
 
 const Navigation = () => {
   const { user, logout } = useAuth();
@@ -20,6 +21,18 @@ const Navigation = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const searchRef = useRef();
+
+  const [cart, setCart] = useState(false);
+
+  useEffect(() => {
+    const fetchCart = async () => {
+      if (user) {
+        const status = await service.isProductInUserCart(user.email);
+        setCart(status ? 1 : 0);
+      }
+    };
+    fetchCart();
+  }, [user]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -169,11 +182,21 @@ const Navigation = () => {
               },
             }}
           >
-            <BsCart3 size={20} />
+            <Badge
+              variant="dot"
+              color="error"
+              invisible={cart.length === 0}
+            >
+              <BsCart3 size={20} />
+            </Badge>
           </Button>
         )}
-        {user && (<Button
-            onClick={() => {logout(); navigate("/");}}
+        {user && (
+          <Button
+            onClick={() => {
+              logout();
+              navigate("/");
+            }}
             sx={{
               fontSize: { xs: "14px", md: "18px" },
               padding: { xs: "6px 12px", md: "10px 20px" },
@@ -189,7 +212,8 @@ const Navigation = () => {
             }}
           >
             Logout
-          </Button>)}
+          </Button>
+        )}
       </div>
     </div>
   );

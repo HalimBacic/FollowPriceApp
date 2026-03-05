@@ -16,7 +16,6 @@ const formatDate = (dateString) => {
 };
 
 const addToCart = async (barcode, email) => {
-  console.log("Adding to cart:", barcode, email);
   await productService.addProductForUser(barcode, email);
 }
 

@@ -88,6 +88,19 @@ class ProductService {
     }
 
   }
+
+  async isProductInUserCart(email) {
+    try{
+      const response = await this.api.get(`/isproductforuser`, {
+        params: { email: email },
+      });
+      if (response.status === 201) 
+        return true;
+    } catch (error) {
+      console.error("Greška prilikom pregleda korpe:", error);
+      return false;
+    }
+  }
 }
 
 const apiService = new ProductService();
