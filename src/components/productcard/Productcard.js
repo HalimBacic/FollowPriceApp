@@ -20,7 +20,7 @@ const addToCart = async (barcode, email) => {
 }
 
 const Productcard = ({ productdata }) => {
-  const { user, logout } = useAuth();
+  const { user, logout, setHasCartItems } = useAuth();
   const navigate = useNavigate();
   const formattedLastChange = formatDate(productdata.lastchange);
 
@@ -66,7 +66,8 @@ const Productcard = ({ productdata }) => {
           variant="contained"
           onClick={async (e) => {
             e.stopPropagation(); 
-            await addToCart(productdata.product.barcode, user.email);}}
+            await addToCart(productdata.product.barcode, user.email);
+            setHasCartItems(true)}}
           startIcon={<BsCart3 size={20} />}
           sx={{
             backgroundColor: "#FFC145",

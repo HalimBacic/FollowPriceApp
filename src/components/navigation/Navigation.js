@@ -12,7 +12,7 @@ import { BsCart3 } from "react-icons/bs";
 import { Badge } from "@mui/material";
 
 const Navigation = () => {
-  const { user, logout } = useAuth();
+  const { user, logout, hasCartItems } = useAuth()
   const navigate = useNavigate();
 
   // Logika za pretragu
@@ -185,7 +185,7 @@ const Navigation = () => {
             <Badge
               variant="dot"
               color="error"
-              invisible={cart.length === 0}
+              invisible={!cart && !hasCartItems}
             >
               <BsCart3 size={20} />
             </Badge>

@@ -94,8 +94,10 @@ class ProductService {
       const response = await this.api.get(`/isproductforuser`, {
         params: { email: email },
       });
-      if (response.status === 201) 
+      if (response.status === 200) 
         return true;
+      else
+        return false;
     } catch (error) {
       console.error("Greška prilikom pregleda korpe:", error);
       return false;

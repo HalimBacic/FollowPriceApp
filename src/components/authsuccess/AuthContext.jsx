@@ -5,7 +5,8 @@ const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
-
+  const [hasCartItems, setHasCartItems] = useState(false)  
+        
   useEffect(() => {
     const token = localStorage.getItem("jwt")
     if (token) {
@@ -26,10 +27,11 @@ export function AuthProvider({ children }) {
   const logout = () => {
     localStorage.removeItem("jwt")
     setUser(null)
+    setHasCartItems(false)
   }
 
   return (
-    <AuthContext.Provider value={{ user, setUser, logout }}>
+    <AuthContext.Provider value={{ user, setUser, logout, hasCartItems, setHasCartItems }}>
       {children}
     </AuthContext.Provider>
   )
