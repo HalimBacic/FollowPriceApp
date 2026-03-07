@@ -75,10 +75,10 @@ class ProductService {
     }
   }
 
-  async addProductForUser(barcode, email) {
+  async addProductForUser(barcode, email, storeid) {
         try {
       const response = await this.api.post(`/addproductforuser`,
-        { barcode: barcode, email: email });
+        { barcode: barcode, email: email, store_id: storeid });
 
       if (response.status === 201) 
         return true;

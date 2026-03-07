@@ -15,10 +15,6 @@ const formatDate = (dateString) => {
   });
 };
 
-const addToCart = async (barcode, email) => {
-  await productService.addProductForUser(barcode, email);
-}
-
 const Productcard = ({ productdata }) => {
   const { user, logout, setHasCartItems } = useAuth();
   const navigate = useNavigate();
@@ -60,27 +56,6 @@ const Productcard = ({ productdata }) => {
           <div className={style.barcode}>{productdata.product.barcode}</div>
           <div className={style.date}>{formattedLastChange}</div>
         </div>
-
-        {/* Add to cart dugme */}
-        {user && <Button
-          variant="contained"
-          onClick={async (e) => {
-            e.stopPropagation(); 
-            await addToCart(productdata.product.barcode, user.email);
-            setHasCartItems(true)}}
-          startIcon={<BsCart3 size={20} />}
-          sx={{
-            backgroundColor: "#FFC145",
-            color: "#000",
-            fontFamily: "Figtree, sans-serif",
-            fontWeight: "600",
-            "&:hover": {
-              backgroundColor: "#e6ac3a",
-            },
-          }}
-        >
-          Add to cart
-        </Button>}
       </div>
     </div>
   );

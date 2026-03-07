@@ -1,7 +1,17 @@
 import React from "react";
 import "./ProductPriceCell.css";
+import { useAuth } from "../authsuccess/AuthContext";
+import productService from "../../service/ProductService";
+import { BsCart3 } from "react-icons/bs";
+import { Button } from "@mui/material";
 
-const PriceInfo = ({ product }) => {
+
+const addToCart = async (barcode, email, storeid) => {
+  await productService.addProductForUser(barcode, email, storeid);
+}
+
+const PriceInfo = ({ product, barcode }) => {
+    const { user, logout, setHasCartItems } = useAuth()
   const currentPrice = Number(product.price) || 0;
   const previousPrice = Number(product.oldprice) || 0;
 
@@ -61,6 +71,26 @@ const PriceInfo = ({ product }) => {
             <span>{Math.abs(priceChange)}%</span>
           </div>
         </div>
+        {user && <Button
+          variant="contained"
+          onClick={async (e) => {
+            e.stopPropagation(); 
+            console.log(" Adding to cart:", product);
+            await addToCart(barcode, user.email, product.store.id);
+            setHasCartItems(true)}}
+          startIcon={<BsCart3 size={20} />}
+          sx={{
+            backgroundColor: "#FFC145",
+            color: "#000",
+            fontFamily: "Figtree, sans-serif",
+            fontWeight: "600",
+            "&:hover": {
+              backgroundColor: "#e6ac3a",
+            },
+          }}
+        >
+          Add to cart
+        </Button>}
 
         <div className="price-row date">
           <span>Change date </span>

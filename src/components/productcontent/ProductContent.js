@@ -75,7 +75,7 @@ function ProductContent({ barcode }) {
           options={[{ label: "Price", value: "price" }]}
         ></SortComponent>
       </div>
-      <ProductPriceList productsprices={data} />
+      <ProductPriceList productsprices={data} barcode={barcode}/>
     </div>
   );
 }
