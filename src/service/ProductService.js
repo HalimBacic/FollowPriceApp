@@ -89,6 +89,23 @@ class ProductService {
 
   }
 
+  async getUserProducts(email) {
+    try {
+      const response = await this.api.get(`/getuserproducts`, {
+        params: { email: email },
+      });
+
+      if (response.status === 204) {
+        return [];
+      }
+
+      return response.data;
+    } catch (error) {
+      console.error("Greška prilikom dohvatanja proizvoda korisnika:", error);
+      return [];
+    }
+  }
+
   async isProductInUserCart(email) {
     try{
       const response = await this.api.get(`/isproductforuser`, {
