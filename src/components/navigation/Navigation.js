@@ -168,6 +168,7 @@ const Navigation = () => {
         )}
         {user && (
           <Button
+            onClick={() => navigate("/favorites", { state: { user } })}
             sx={{
               fontSize: { xs: "14px", md: "18px" },
               padding: { xs: "6px 12px", md: "10px 20px" },
