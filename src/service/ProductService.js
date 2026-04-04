@@ -76,17 +76,33 @@ class ProductService {
   }
 
   async addProductForUser(barcode, email, storeid) {
-        try {
-      const response = await this.api.post(`/addproductforuser`,
-        { barcode: barcode, email: email, store_id: storeid });
+    try {
+      const response = await this.api.post(`/addproductforuser`, {
+        barcode: barcode,
+        email: email,
+        store_id: storeid,
+      });
 
-      if (response.status === 201) 
-        return true;
+      if (response.status === 201) return true;
     } catch (error) {
       console.error("Greška prilikom dodavanja proizvoda korisniku:", error);
       return false;
     }
+  }
 
+  async deleteProdForUser(barcode, email, storeid) {
+    try {
+      const response = await this.api.post(`/deleteproductforuser`, {
+        barcode: barcode,
+        email: email,
+        store_id: storeid,
+      });
+
+      if (response.status === 201) return true;
+    } catch (error) {
+      console.error("Greška prilikom dodavanja proizvoda korisniku:", error);
+      return false;
+    }
   }
 
   async getUserProducts(email) {
@@ -107,14 +123,12 @@ class ProductService {
   }
 
   async isProductInUserCart(email) {
-    try{
+    try {
       const response = await this.api.get(`/isproductforuser`, {
         params: { email: email },
       });
-      if (response.status === 200) 
-        return true;
-      else
-        return false;
+      if (response.status === 200) return true;
+      else return false;
     } catch (error) {
       console.error("Greška prilikom pregleda korpe:", error);
       return false;

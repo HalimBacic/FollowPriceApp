@@ -1,10 +1,7 @@
 import style from "./Productcard.module.css";
 import { useNavigate } from "react-router-dom";
 import ProductPriceCell from "./ProductPriceCell";
-import { BsCart3 } from "react-icons/bs";
-import { Button } from "@mui/material";
 import { useAuth } from "../authsuccess/AuthContext";
-import productService from "../../service/ProductService";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);

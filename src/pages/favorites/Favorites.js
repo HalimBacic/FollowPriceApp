@@ -4,6 +4,13 @@ import { useState, useEffect } from 'react';
 import service from "../../service/ProductService";
 import { useLocation } from 'react-router-dom';
 import UserProds from '../../components/userprods/UserProds';
+import productService from '../../service/ProductService';
+
+
+const handleDelete = async(barcode, storeid, email) =>
+{
+  await productService.deleteProdForUser(barcode, email, storeid);
+} 
 
 const Favorites = () => {
     const { state } = useLocation();
@@ -28,7 +35,7 @@ const Favorites = () => {
     <div>
       <Navigation></Navigation>
       {data && data.map((item) => (
-        <UserProds key={item.product.barcode} data={item}/>
+        <UserProds key={item.product.barcode} data={item} onDelete={handleDelete}/>
       ))}
     </div>
   )

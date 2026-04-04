@@ -14,7 +14,16 @@ const ArrowIcon = ({ isDown }) => (
 
 const ImagePlaceholder = () => (
   <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-    <rect x="4" y="8" width="32" height="24" rx="3" stroke="#aaa" strokeWidth="1.5" fill="white" />
+    <rect
+      x="4"
+      y="8"
+      width="32"
+      height="24"
+      rx="3"
+      stroke="#aaa"
+      strokeWidth="1.5"
+      fill="white"
+    />
     <circle cx="14" cy="17" r="4" stroke="#aaa" strokeWidth="1.5" fill="none" />
     <path
       d="M4 28 L13 19 L20 26 L27 20 L36 28"
@@ -32,7 +41,6 @@ const UserProds = ({ data, onDelete }) => {
 
   return (
     <div className="card">
-
       <div className="card__header">
         <span className="card__header-name">{product.name}</span>
         <span className="card__header-barcode">{product.barcode}</span>
@@ -54,11 +62,22 @@ const UserProds = ({ data, onDelete }) => {
       <div className="card__footer">
         <div className="card__store-info">
           <p className="card__store-name">{store.store?.name}</p>
-          <p className="card__address">{store.store?.address}, {store.store?.city}</p>
+          <p className="card__address">
+            <span
+              className="material-icons"
+              style={{ fontSize: 14, verticalAlign: "middle", marginRight: 4 }}
+            >
+              location_on
+            </span>
+            {store.store?.address}, {store.store?.city}
+          </p>
         </div>
         <Button
           variant="contained"
-          onClick={() => onDelete(email, product.barcode, store.store?.id)}
+          onClick={(e) =>{ 
+            e.stopPropagation();
+            onDelete(product.barcode, email, store.store?.id)
+          }}
           startIcon={<BsTrash size={16} />}
           sx={{
             backgroundColor: "#FFC145",
@@ -74,7 +93,6 @@ const UserProds = ({ data, onDelete }) => {
           Ukloni
         </Button>
       </div>
-
     </div>
   );
 };
