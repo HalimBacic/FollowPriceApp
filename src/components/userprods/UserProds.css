@@ -1,8 +1,8 @@
 .card {
-  border: 0.5px solid #e0e0e0;
-  border-radius: 12px;
+  border: 0.5px solid var(--color-border-soft);
+  border-radius: var(--radius-md);
   overflow: hidden;
-  background: #fff;
+  background: var(--color-white);
   font-family: sans-serif;
   margin: 12px auto;
   width: 90%;
@@ -13,13 +13,13 @@
   align-items: center;
   justify-content: space-between;
   padding: 14px 20px;
-  border-bottom: 0.5px solid #e0e0e0;
+  border-bottom: 0.5px solid var(--color-border-soft);
 }
 
 .card__header-name {
   font-size: 15px;
   font-weight: 500;
-  color: #1a1a1a;
+  color: var(--color-text-main);
 }
 
 .card__header-barcode {
@@ -33,7 +33,7 @@
   display: flex;
   align-items: stretch;
   height: 100px;
-  border-bottom: 0.5px solid #e0e0e0;
+  border-bottom: 0.5px solid var(--color-border-soft);
 }
 
 .card__image {
@@ -70,7 +70,7 @@
 .card__new-price {
   font-size: 22px;
   font-weight: 500;
-  color: #1a1a1a;
+  color: var(--color-text-main);
 }
 
 .card__footer {
@@ -90,13 +90,13 @@
 .card__store-name {
   font-size: 15px;
   font-weight: 500;
-  color: #444;
+  color: var(--color-text-body);
   margin: 0;
 }
 
 .card__address {
   font-size: 15px;
-  color: #555;
+  color: var(--color-text-secondary);
   margin: 0;
   line-height: 1.4;
   display: flex;
@@ -104,9 +104,9 @@
 }
 
 .arrow--down {
-  color: #22c55e;
+  color: var(--color-success-bright);
 }
 
 .arrow--up {
-  color: #ef4444;
+  color: var(--color-danger-bright);
 }

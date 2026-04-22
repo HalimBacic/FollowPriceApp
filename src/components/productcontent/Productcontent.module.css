@@ -3,8 +3,8 @@
 .productGrid {
   margin: 20px auto;
   border-collapse: collapse;
-  background-color: white; 
-  border-radius: 8px; 
+  background-color: var(--color-white); 
+  border-radius: var(--radius-sm); 
   overflow: hidden; 
   box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2); 
 }
@@ -28,8 +28,8 @@
 /* Primer minimalnog razdvajanja ako želite (uklonite ako ne trebate) */
 
 .productGrid tr:not(:last-child) .gridCell {
-  border-bottom: 1px solid #f0f0f0; 
+  border-bottom: 1px solid var(--color-border-light); 
 }
 .productGrid tr td:not(:last-child) {
-  border-right: 1px solid #f0f0f0;
+  border-right: 1px solid var(--color-border-light);
 }

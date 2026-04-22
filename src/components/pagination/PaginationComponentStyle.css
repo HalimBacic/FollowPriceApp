@@ -3,7 +3,7 @@
   border: none;
   padding: 4px;
   cursor: pointer;
-  color: #5b5f97;
+  color: var(--color-primary);
   display: flex;
   align-items: center;
   justify-content: center;

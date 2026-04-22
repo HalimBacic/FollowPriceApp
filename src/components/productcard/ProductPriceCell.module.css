@@ -9,7 +9,7 @@
 .currentPrice, .currentPriceOnly {
     font-size: 1.5em;
     font-weight: bold;
-    color: #333;
+    color: var(--color-text-dark);
 }
 
 .oldPriceWrapper {
@@ -21,7 +21,7 @@
 
 .oldPrice {
     font-size: 0.8em; 
-    color: #888;
+    color: var(--color-text-muted);
     text-decoration: line-through; 
 }
 
@@ -31,9 +31,9 @@
 }
 
 .greenDown {
-    color: green;
+    color: var(--color-success);
 }
 
 .redUp {
-    color: red;
+    color: var(--color-danger);
 }
