@@ -5,7 +5,7 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import "./SortComponentStyle.css";
 
 const SortComponent = ({ options = [], onChange, defaultSort }) => {
-  const [field, setField] = useState(defaultSort?.field ?? "");
+  const [field, setField] = useState(defaultSort?.field ?? options[0]?.value ?? "");
   const [direction, setDirection] = useState(defaultSort?.direction ?? "ASC");
 
   useEffect(() => {
@@ -16,20 +16,29 @@ const SortComponent = ({ options = [], onChange, defaultSort }) => {
     }
   }, [field, direction, onChange]);
 
+  useEffect(() => {
+    if (!field && options.length > 0) {
+      setField(options[0].value);
+    }
+  }, [field, options]);
+
   return (
-    <div style={{width: "fit-content", display: "flex", alignItems: "center", gap: "8px"}}>
-      <select className="sort-select" value={field} onChange={(e) => setField(e.target.value)}>
-        <option value="">Sort by</option>
-        {options.map((opt) => (
-          <option key={opt.value} value={opt.value}>
-            {opt.label}
-          </option>
-        ))}
-      </select>
+    <div className="sort-wrap">
+      <div className="sort-select-wrap">
+        <select className="sort-select" value={field} onChange={(e) => setField(e.target.value)}>
+          {options.map((opt) => (
+            <option key={opt.value} value={opt.value}>
+              {opt.label}
+            </option>
+          ))}
+        </select>
+      </div>
 
       <button
         className="sort-icon-btn"
         onClick={() => setDirection((d) => (d === "ASC" ? "DESC" : "ASC"))}
+        title={direction === "ASC" ? "Ascending" : "Descending"}
+        aria-label="Toggle sort direction"
       >
         {direction === "ASC" ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />}
       </button>

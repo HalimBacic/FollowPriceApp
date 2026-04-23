@@ -1,12 +1,38 @@
+.paginationWrap {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(91, 95, 151, 0.08);
+  border: 1px solid rgba(91, 95, 151, 0.18);
+}
+
 .icon-arrow {
-  background: transparent;
-  border: none;
+  background: rgba(91, 95, 151, 0.12);
+  border: 1px solid rgba(91, 95, 151, 0.2);
+  border-radius: 999px;
+  width: 34px;
+  height: 34px;
   padding: 4px;
   cursor: pointer;
   color: var(--color-primary);
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.icon-arrow:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: rgba(91, 95, 151, 0.2);
+  border-color: rgba(91, 95, 151, 0.28);
+}
+
+.icon-arrow:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 
 .icon-arrow svg {
@@ -16,4 +42,12 @@
 
 .icon-arrow .MuiSvgIcon-root {
   font-size: 25px;
+}
+
+.pageInfo {
+  font-size: 14px;
+  color: var(--color-primary);
+  min-width: 68px;
+  text-align: center;
+  font-weight: 600;
 }

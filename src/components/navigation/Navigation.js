@@ -89,21 +89,17 @@ const Navigation = () => {
       className={`${style.searchContainerInput} ${style.navigationContainer}`}
     >
       <Button
+        className={`${style.navButton} ${style.homeButton}`}
         onClick={() => {
           navigate("/");
         }}
         sx={{
           fontSize: { xs: "14px", md: "18px" },
           padding: { xs: "6px 12px", md: "10px 20px" },
-          backgroundColor: "transparent",
-          color: "#FFC145",
+          color: "var(--color-accent)",
           fontFamily: "Figtree, sans-serif",
           fontWeight: "600",
           boxShadow: "none",
-          "&:hover": {
-            backgroundColor: "transparent",
-            boxShadow: "none",
-          },
         }}
       >
         Home
@@ -112,8 +108,8 @@ const Navigation = () => {
       <div className={style.rightside}>
         <div className={style.searchContainer}>
           <IconButton
+            className={style.searchButton}
             sx={{
-              color: "#FFC145",
               fontSize: { xs: "20px", md: "28px" },
             }}
             onClick={gotoresults}
@@ -123,6 +119,7 @@ const Navigation = () => {
 
           <div>
             <Input
+              className={style.searchInput}
               placeholder="Search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
@@ -134,7 +131,6 @@ const Navigation = () => {
               sx={{
                 fontSize: { xs: "14px", md: "18px" },
                 width: { xs: "120px", sm: "200px", md: "300px" },
-                color: "#FFFFFF",
               }}
             />
           </div>
@@ -145,21 +141,17 @@ const Navigation = () => {
         </div>
         {!user && (
           <Button
+            className={`${style.navButton} ${style.actionButton}`}
             onClick={() => {
               window.location.href = "http://localhost:8001/login"; // ← direktno na Python backend
             }}
             sx={{
               fontSize: { xs: "14px", md: "18px" },
               padding: { xs: "6px 12px", md: "10px 20px" },
-              backgroundColor: "transparent",
-              color: "#FFC145",
+              color: "var(--color-accent)",
               fontFamily: "Figtree, sans-serif",
               fontWeight: "600",
               boxShadow: "none",
-              "&:hover": {
-                backgroundColor: "transparent",
-                boxShadow: "none",
-              },
             }}
           >
             Signin&nbsp;
@@ -168,19 +160,15 @@ const Navigation = () => {
         )}
         {user && (
           <Button
+            className={`${style.navButton} ${style.actionButton}`}
             onClick={() => navigate("/favorites", { state: { user } })}
             sx={{
               fontSize: { xs: "14px", md: "18px" },
               padding: { xs: "6px 12px", md: "10px 20px" },
-              backgroundColor: "transparent",
-              color: "#FFC145",
+              color: "var(--color-accent)",
               fontFamily: "Figtree, sans-serif",
               fontWeight: "600",
               boxShadow: "none",
-              "&:hover": {
-                backgroundColor: "transparent",
-                boxShadow: "none",
-              },
             }}
           >
             <Badge
@@ -194,6 +182,7 @@ const Navigation = () => {
         )}
         {user && (
           <Button
+            className={`${style.navButton} ${style.actionButton}`}
             onClick={() => {
               logout();
               navigate("/");
@@ -201,15 +190,10 @@ const Navigation = () => {
             sx={{
               fontSize: { xs: "14px", md: "18px" },
               padding: { xs: "6px 12px", md: "10px 20px" },
-              backgroundColor: "transparent",
-              color: "#FFC145",
+              color: "var(--color-accent)",
               fontFamily: "Figtree, sans-serif",
               fontWeight: "600",
               boxShadow: "none",
-              "&:hover": {
-                backgroundColor: "transparent",
-                boxShadow: "none",
-              },
             }}
           >
             Logout

@@ -9,12 +9,19 @@
   padding: 10px;
   background-color: var(--color-white);
   border-radius: var(--radius-md);
-  border: 1px solid var(--color-border-soft);
+  border: 1px solid rgba(91, 95, 151, 0.14);
   box-shadow: var(--shadow-soft);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.price-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+  border-color: rgba(91, 95, 151, 0.26);
 }
 
 /* ===================== */

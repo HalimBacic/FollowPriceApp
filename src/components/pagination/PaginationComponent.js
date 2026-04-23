@@ -9,7 +9,7 @@ const PaginationComponent = ({
   onPageChange
 }) => {
   return (
-    <div style={{width: "fit-content", display: "flex", alignItems: "center", gap: "8px"}}>
+    <div className='paginationWrap'>
       <button
       className='icon-arrow'
         disabled={page <= 1}
@@ -18,7 +18,7 @@ const PaginationComponent = ({
       <ChevronLeftIcon />
       </button>
 
-      <span style={{fontSize: "14px", color: "#5b5f97"}}>
+      <span className='pageInfo'>
         {page} / {totalPages}
       </span>
 
