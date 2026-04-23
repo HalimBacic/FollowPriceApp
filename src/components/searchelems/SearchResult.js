@@ -3,17 +3,21 @@ import SearchItem from "./SearchItem";
 import "./SearchStyle.css";
 
 const SearchResult = ({ results, isLoading }) => {
-
-  console.log("Search results:", results);
+  const prices = results?.prices ?? [];
 
   return (
     <div className="search-overlay">
       <div className="search-overlay-content">
-        {isLoading && <p>Loading...</p>}
+        <div className="search-results-header">
+          <h3 className="search-results-title">Rezultati pretrage</h3>
+          {!isLoading && <span className="search-results-count">{prices.length}</span>}
+        </div>
 
-        {!isLoading && results.prices && results.prices.length === 0 && <p>No results</p>}
+        {isLoading && <p className="search-state">Loading...</p>}
 
-        {results.prices && results.prices.map((item) => (
+        {!isLoading && prices.length === 0 && <p className="search-state">No results</p>}
+
+        {prices.map((item) => (
           <SearchItem key={item.id} item={item} />
         ))}
       </div>

@@ -15,19 +15,18 @@ const SearchItem = ({ item }) => {
   };
 
   return (
-    <div onClick={gotoProductPage}>
-      <div className="result-item">
-        <img
-          src={`${process.env.PUBLIC_URL}/assets/${item.product.barcode}.png`}
-          className="productImage"
-          alt="Milk"
-        />
-        <div className="basic-info">
-          <h4>{item.product.name}</h4>
-          <p>{item.product.barcode}</p>
-        </div>
+    <button className="result-item" onClick={gotoProductPage} type="button">
+      <img
+        src={`${process.env.PUBLIC_URL}/assets/${item.product.barcode}.png`}
+        className="productImage"
+        alt={item.product.name}
+      />
+
+      <div className="basic-info">
+        <h4 className="result-title">{item.product.name}</h4>
+        <p className="result-code">Barcode: {item.product.barcode}</p>
       </div>
-    </div>
+    </button>
   );
 };
 
