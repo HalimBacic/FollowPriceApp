@@ -20,6 +20,11 @@
   --color-danger: #e74c3c;
   --color-danger-bright: #ef4444;
 
+  --color-date-red: #e74c3c;
+  --color-date-orange: #e67e22;
+  --color-date-yellow: #f1c40f;
+  --color-date-blue: #3498db;
+
   --radius-sm: 8px;
   --radius-md: 12px;
 

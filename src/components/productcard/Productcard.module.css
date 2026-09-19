@@ -14,7 +14,6 @@
   width: 90%;
 }
 
-
 .card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-card);
@@ -42,14 +41,63 @@
   object-fit: contain;
 }
 
+.footerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.dateBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.barcodeBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.barcodeSvg {
+  max-width: 120px;
+  height: 40px;
+  display: block;
+}
+
 .barcode {
   text-align: center;
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   color: var(--color-text-secondary);
+  letter-spacing: 0.4px;
 }
 
 .date {
-  text-align: center;
+  text-align: left;
   font-size: 0.85rem;
-  color: var(--color-text-muted);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.dateRed {
+  color: var(--color-date-red);
+  text-decoration-color: var(--color-date-red);
+}
+
+.dateOrange {
+  color: var(--color-date-orange);
+  text-decoration-color: var(--color-date-orange);
+}
+
+.dateYellow {
+  color: var(--color-date-yellow);
+  text-decoration-color: var(--color-date-yellow);
+}
+
+.dateBlue {
+  color: var(--color-date-blue);
+  text-decoration-color: var(--color-date-blue);
 }

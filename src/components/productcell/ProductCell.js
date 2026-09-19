@@ -1,17 +1,11 @@
 import styles from "./ProductCell.module.css";
+import UtilService from "../../util/UtilService";
 
-// Funkcija za formatiranje datuma
-const formatDate = (dateString) => {
-  // Parsira datum
-  const date = new Date(dateString); 
-  
-  // Koristi lokalni format (npr. DD.MM.YYYY HH:MM)
-  // Opcionalno možete dodati { hour: '2-digit', minute: '2-digit' } ako vam trebaju sati/minute
-  return date.toLocaleDateString('hr-BA', { 
-    year: 'numeric', 
-    month: '2-digit', 
-    day: '2-digit' 
-  }); 
+const DATE_COLOR_CLASS = {
+  red: styles.dateRed,
+  orange: styles.dateOrange,
+  yellow: styles.dateYellow,
+  blue: styles.dateBlue,
 };
 
 const ProductCell = ({ data = {} }) => {
@@ -22,6 +16,8 @@ const ProductCell = ({ data = {} }) => {
     expdate = "10.10.2025.",
   } = data;
 
+  const urgencyColor = UtilService.getDateUrgencyColor(expdate);
+
   return (
     <div>
       <table>
@@ -29,28 +25,26 @@ const ProductCell = ({ data = {} }) => {
           <tr>
             <td className={styles.cellContainer}>
               <div className={styles.dataWrapper}>
-                {/* Tip Proizvoda */}
                 <p className={styles.dataRow}>
                   <span className={styles.label}>Type:</span>
                   <span className={styles.mainValue}>{producttype}</span>
                 </p>
 
-                {/* Proizvođač */}
                 <p className={styles.dataRow}>
                   <span className={styles.label}>Producer:</span>
                   <span>{producer}</span>
                 </p>
 
-                {/* Težina */}
                 <p className={styles.dataRow}>
                   <span className={styles.label}>Weight:</span>
                   <span>{weight.toFixed(1)} kg</span>
                 </p>
 
-                {/* Datum Isteka */}
                 <p className={styles.dataRowNoMargin}>
                   <span className={styles.label}>Expire date:</span>
-                  <span>{formatDate(expdate)}</span>
+                  <span className={`${styles.expireDate} ${DATE_COLOR_CLASS[urgencyColor]}`}>
+                    {UtilService.formatDate(expdate)}
+                  </span>
                 </p>
               </div>
             </td>

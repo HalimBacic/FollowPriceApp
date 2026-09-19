@@ -1,34 +1,52 @@
+import { useEffect, useRef } from "react";
 import style from "./Productcard.module.css";
 import { useNavigate } from "react-router-dom";
 import ProductPriceCell from "./ProductPriceCell";
-import { useAuth } from "../authsuccess/AuthContext";
+import UtilService from "../../util/UtilService";
+import JsBarcode from "jsbarcode";
 
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString("hr-BA", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  });
+const DATE_COLOR_CLASS = {
+  red: style.dateRed,
+  orange: style.dateOrange,
+  yellow: style.dateYellow,
+  blue: style.dateBlue,
 };
 
 const Productcard = ({ productdata }) => {
-  const { user, logout, setHasCartItems } = useAuth();
   const navigate = useNavigate();
-  const formattedLastChange = formatDate(productdata.lastchange);
+  const barcodeRef = useRef(null);
+  const barcode = productdata.product.barcode;
+  const formattedLastChange = UtilService.formatDate(productdata.lastchange);
+  const urgencyColor = UtilService.getDateUrgencyColor(productdata.lastchange);
+
+  useEffect(() => {
+    if (!barcodeRef.current || !barcode) return;
+
+    try {
+      JsBarcode(barcodeRef.current, String(barcode), {
+        format: "CODE128",
+        displayValue: false,
+        margin: 0,
+        height: 36,
+        width: 1.4,
+        background: "transparent",
+      });
+    } catch (error) {
+      console.error("Failed to render barcode:", error);
+    }
+  }, [barcode]);
 
   const goToProductPage = () => {
-    navigate("/product/" + productdata.product.barcode);
+    navigate("/product/" + barcode);
   };
 
   return (
     <div className={style.card} onClick={goToProductPage}>
-      {/* Naziv */}
       <div className={style.title}>{productdata.product.name}</div>
 
       <div className={style.centerContent}>
         <img
-          src={`${process.env.PUBLIC_URL}/assets/${productdata.product.barcode}.png`}
+          src={`${process.env.PUBLIC_URL}/assets/${barcode}.png`}
           alt={productdata.product.name}
           className={style.productImage}
         />
@@ -39,19 +57,16 @@ const Productcard = ({ productdata }) => {
         />
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          flexDirection: "row",
-          alignItems: "center",
-          gap: "16px",
-        }}
-      >
-        {/* Barcode i Datum - jedan ispod drugog */}
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <div className={style.barcode}>{productdata.product.barcode}</div>
-          <div className={style.date}>{formattedLastChange}</div>
+      <div className={style.footerRow}>
+        <div className={style.dateBlock}>
+          <div className={`${style.date} ${DATE_COLOR_CLASS[urgencyColor]}`}>
+            {formattedLastChange}
+          </div>
+        </div>
+
+        <div className={style.barcodeBlock}>
+          <svg ref={barcodeRef} className={style.barcodeSvg} />
+          <div className={style.barcode}>{barcode}</div>
         </div>
       </div>
     </div>
