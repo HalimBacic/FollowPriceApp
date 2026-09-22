@@ -36,12 +36,15 @@ const Home = () => {
       <div style={{ display: "flex", width: "15%", flexDirection: "row", justifyContent: "space-between", alignItems: "center", margin: "20px" }}>
         <PaginationComponent
           page={page}
-          totalPages={data && data.totalPages ? data.totalPages : 1}
+          totalPages={data && data.total_pages ? data.total_pages : 1}
           onPageChange={changePage}
         />
         <SortComponent
           onChange={handleSort}
-          options={[{ label: "Price", value: "price" }]}
+          options={[{ label: "Price", value: "price" },
+            { label: "Discount", value: "discount" },
+            { label: "Expiration Date", value: "expiration_date" }
+          ]}
         ></SortComponent>
       </div>
       <div className="products-grid">
