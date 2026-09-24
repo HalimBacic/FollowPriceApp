@@ -42,13 +42,22 @@ const Productcard = ({ productdata }) => {
 
   return (
     <div className={style.card} onClick={goToProductPage}>
-      <div className={style.title}>{productdata.product.name}</div>
+      <div className={style.titleRow}>
+        <div className={style.title}>{productdata.product.name}</div>
+        <div className={style.productType}>{productdata.product.producttype}</div>
+      </div>
 
       <div className={style.centerContent}>
         <img
-          src={`${process.env.PUBLIC_URL}/assets/${barcode}.png`}
+          src={UtilService.getProductImagePath(barcode)}
           alt={productdata.product.name}
           className={style.productImage}
+          onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = UtilService.getSampleImagePath(
+              productdata.product.producttype
+            );
+          }}
         />
 
         <ProductPriceCell

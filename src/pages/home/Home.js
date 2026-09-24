@@ -43,7 +43,8 @@ const Home = () => {
           onChange={handleSort}
           options={[{ label: "Price", value: "price" },
             { label: "Discount", value: "discount" },
-            { label: "Expiration Date", value: "expiration_date" }
+            { label: "Expiration Date", value: "expiration_date" },
+            
           ]}
         ></SortComponent>
       </div>

@@ -1,4 +1,19 @@
 class UtilService {
+  static SAMPLE_IMAGE_BY_TYPE = {
+    Food: "food.png",
+    Hygiene: "hygiene.png",
+    Clothing: "clothing.png",
+    "Auto Equipment": "auto-equipment.png",
+    Electronics: "electronics.png",
+    "Home Appliances": "home-appliances.png",
+    Books: "books.png",
+    "Sports & Recreation": "sports-recreation.png",
+    Toys: "toys.png",
+    "Pet Supplies": "pet-supplies.png",
+    "Pharmacy / Medication": "pharmacy-medication.png",
+    "Garden & Tools": "garden-tools.png",
+  };
+
   static formatDate(dateString) {
     if (!dateString) return "";
     const date = new Date(dateString);
@@ -27,6 +42,16 @@ class UtilService {
     if (weeksUntil <= 6) return "orange";
     if (weeksUntil <= 10) return "yellow";
     return "blue";
+  }
+
+  static getProductImagePath(barcode) {
+    return `${process.env.PUBLIC_URL}/assets/${barcode}.png`;
+  }
+
+  static getSampleImagePath(producttype) {
+    const fileName =
+      UtilService.SAMPLE_IMAGE_BY_TYPE[producttype] || "default.png";
+    return `${process.env.PUBLIC_URL}/assets/samples/${fileName}`;
   }
 }
 

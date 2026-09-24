@@ -6,6 +6,7 @@ import service from "../../service/ProductService";
 import PaginationComponent from "../../components/pagination/PaginationComponent";
 import SortComponent from "../../components/sortcomponent/SortComponent";
 import JsBarcode from "jsbarcode";
+import UtilService from "../../util/UtilService";
 
 function ProductContent({ barcode }) {
   const [data, setdata] = useState([]);
@@ -79,9 +80,15 @@ function ProductContent({ barcode }) {
           <tr>
             <td className={style.gridCell}>
               <img
-                src={`${process.env.PUBLIC_URL}/assets/${barcode}.png`}
-                alt="Milk"
+                src={UtilService.getProductImagePath(barcode)}
+                alt={data.product.name}
                 className={style.productImage}
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = UtilService.getSampleImagePath(
+                    data.product.producttype
+                  );
+                }}
               />
             </td>
             <td className={style.gridCell}>
