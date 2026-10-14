@@ -9,10 +9,11 @@ import service from "../../service/ProductService";
 import SearchResult from "../searchelems/SearchResult";
 import { FcGoogle } from "react-icons/fc";
 import { BsCart3 } from "react-icons/bs";
+import { MdMyLocation } from "react-icons/md";
 import { Badge } from "@mui/material";
 
 const Navigation = () => {
-  const { user, logout, hasCartItems } = useAuth()
+  const { user, logout, hasCartItems, location } = useAuth()
   const navigate = useNavigate();
 
   // Logika za pretragu
@@ -178,6 +179,24 @@ const Navigation = () => {
             >
               <BsCart3 size={20} />
             </Badge>
+          </Button>
+        )}
+        {user && location && (
+          <Button
+            className={`${style.navButton} ${style.actionButton} ${style.locationButton}`}
+            aria-label="Lokacija je aktivna"
+            title="Lokacija je aktivna"
+            sx={{
+              fontSize: { xs: "14px", md: "18px" },
+              padding: { xs: "6px 12px", md: "10px 20px" },
+              color: "var(--color-accent)",
+              fontFamily: "Figtree, sans-serif",
+              fontWeight: "600",
+              boxShadow: "none",
+              minWidth: "auto",
+            }}
+          >
+            <MdMyLocation size={20} />
           </Button>
         )}
         {user && (

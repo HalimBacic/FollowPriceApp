@@ -53,6 +53,56 @@ class UtilService {
       UtilService.SAMPLE_IMAGE_BY_TYPE[producttype] || "default.png";
     return `${process.env.PUBLIC_URL}/assets/samples/${fileName}`;
   }
+
+  static USER_LOCATION_KEY = "userLocation";
+
+  static getUserLocation() {
+    try {
+      const raw = localStorage.getItem(UtilService.USER_LOCATION_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  }
+
+  static saveUserLocation(coords) {
+    const payload = {
+      latitude: coords.latitude,
+      longitude: coords.longitude,
+      accuracy: coords.accuracy ?? null,
+      savedAt: new Date().toISOString(),
+    };
+    localStorage.setItem(UtilService.USER_LOCATION_KEY, JSON.stringify(payload));
+    return payload;
+  }
+
+  static clearUserLocation() {
+    localStorage.removeItem(UtilService.USER_LOCATION_KEY);
+  }
+
+  static requestAndStoreUserLocation() {
+    return new Promise((resolve) => {
+      if (!navigator.geolocation) {
+        resolve(null);
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const saved = UtilService.saveUserLocation(position.coords);
+          resolve(saved);
+        },
+        () => {
+          resolve(null);
+        },
+        {
+          enableHighAccuracy: false,
+          timeout: 10000,
+          maximumAge: 0,
+        }
+      );
+    });
+  }
 }
 
 export default UtilService;

@@ -76,6 +76,10 @@
   color: var(--color-accent) !important;
 }
 
+.locationButton {
+  opacity: 0.95;
+}
+
 .searchInput {
   border-radius: 999px;
 }
