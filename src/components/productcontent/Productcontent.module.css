@@ -1,6 +1,7 @@
 /* ProductTable.module.css */
 
 .productGrid {
+  width: min(100% - 24px, 720px);
   margin: 20px auto;
   border-collapse: collapse;
   background-color: var(--color-white); 
@@ -44,6 +45,14 @@
   letter-spacing: 0.4px;
 }
 
+.productToolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 12px;
+}
 
 /* Primer minimalnog razdvajanja ako želite (uklonite ako ne trebate) */
 
@@ -52,4 +61,39 @@
 }
 .productGrid tr td:not(:last-child) {
   border-right: 1px solid var(--color-border-light);
+}
+
+@media (max-width: 600px) {
+  .productGrid {
+    table-layout: fixed;
+    margin: 12px auto;
+  }
+
+  .gridCell {
+    padding: 10px 6px;
+    overflow-wrap: anywhere;
+  }
+
+  .productImage {
+    max-width: 90px;
+    padding: 4px;
+  }
+
+  .barcodeSvg {
+    max-width: 120px;
+  }
+
+  .barcode {
+    font-size: 0.72rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .productImage {
+    max-width: 72px;
+  }
+
+  .barcodeSvg {
+    max-width: 100px;
+  }
 }

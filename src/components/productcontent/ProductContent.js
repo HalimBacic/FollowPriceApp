@@ -97,7 +97,7 @@ function ProductContent({ barcode }) {
           </tr>
         </tbody>
       </table>
-      <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", margin: "10px" }}>
+      <div className={style.productToolbar}>
         <PaginationComponent
           page={page}
           totalPages={10}

@@ -84,6 +84,10 @@
   border-radius: 999px;
 }
 
+.searchInputWrapper {
+  min-width: 0;
+}
+
 .searchInput :global(.MuiInput-input) {
   color: var(--color-white);
   padding: 0.35rem 0;
@@ -110,6 +114,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.6rem;
+    padding: 0.55rem 0.65rem;
   }
 
   .rightside {
@@ -121,6 +126,26 @@
   .searchContainer {
     order: 3;
     width: 100%;
-    justify-content: center;
+    min-width: 0;
+  }
+
+  .searchInputWrapper {
+    flex: 1;
+  }
+
+  .searchInput {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .navigationContainer {
+    gap: 0.35rem;
+  }
+
+  .actionButton,
+  .homeButton {
+    min-width: 0 !important;
+    padding: 6px 8px !important;
   }
 }

@@ -11,7 +11,8 @@
   justify-content: space-between;
   box-shadow: var(--shadow-soft);
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-  width: 90%;
+  width: 100%;
+  min-width: 0;
 }
 
 .card:hover {
@@ -120,4 +121,32 @@
 .dateBlue {
   color: var(--color-date-blue);
   text-decoration-color: var(--color-date-blue);
+}
+
+@media (max-width: 600px) {
+  .card {
+    aspect-ratio: auto;
+    min-height: 300px;
+    padding: 14px;
+  }
+
+  .footerRow {
+    gap: 10px;
+  }
+
+  .barcodeSvg {
+    max-width: 110px;
+  }
+}
+
+@media (max-width: 360px) {
+  .titleRow,
+  .footerRow {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .barcodeBlock {
+    align-items: flex-start;
+  }
 }

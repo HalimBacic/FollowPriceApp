@@ -3,6 +3,7 @@ import Navigation from "../../components/navigation/Navigation";
 import Productcard from "../../components/productcard/Productcard";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import "../home/home.css";
 
 const SearchPage = () => {
   const [data, setData] = useState([]);
@@ -28,9 +29,14 @@ const SearchPage = () => {
   return (
     <div>
       <Navigation />
-      {data.map((item) => (
-        <Productcard productdata={item} />
-      ))}
+      <div className="products-grid">
+        {data.map((item) => (
+          <Productcard
+            key={`${item.product?.barcode}-${item.store?.id ?? item.id ?? ""}`}
+            productdata={item}
+          />
+        ))}
+      </div>
     </div>
   );
 };

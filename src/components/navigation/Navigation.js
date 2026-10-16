@@ -118,7 +118,7 @@ const Navigation = () => {
             <SearchIcon fontSize="inherit" />
           </IconButton>
 
-          <div>
+          <div className={style.searchInputWrapper}>
             <Input
               className={style.searchInput}
               placeholder="Search"

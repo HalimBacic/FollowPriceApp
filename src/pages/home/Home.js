@@ -33,7 +33,7 @@ const Home = () => {
   return (
     <div>
       <Navigation />
-      <div style={{ display: "flex", width: "15%", flexDirection: "row", justifyContent: "space-between", alignItems: "center", margin: "20px" }}>
+      <div className="products-toolbar">
         <PaginationComponent
           page={page}
           totalPages={data && data.total_pages ? data.total_pages : 1}
@@ -50,7 +50,10 @@ const Home = () => {
       </div>
       <div className="products-grid">
         {data && data.prices && data.prices.map((item) => (
-          <Productcard productdata={item} />
+          <Productcard
+            key={`${item.product?.barcode}-${item.store?.id ?? item.id ?? ""}`}
+            productdata={item}
+          />
         ))}
       </div>
     </div>

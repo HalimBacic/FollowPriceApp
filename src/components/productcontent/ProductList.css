@@ -1,6 +1,7 @@
 .products-list {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 12px 20px;
 }
 
 .products-list-title {
@@ -14,8 +15,7 @@
 .products-list-container {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
-  place-items: center;
+  gap: 14px;
 }
 
 .products-list-empty {
@@ -23,4 +23,20 @@
   padding: 40px;
   color: #7f8c8d;
   font-size: 1.2rem;
+}
+
+@media (max-width: 900px) {
+  .products-list-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .products-list {
+    padding-inline: 12px;
+  }
+
+  .products-list-container {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }

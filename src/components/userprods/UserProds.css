@@ -118,3 +118,45 @@
 .arrow--up {
   color: var(--color-danger-bright);
 }
+
+@media (max-width: 600px) {
+  .card {
+    width: calc(100% - 24px);
+  }
+
+  .card__header {
+    align-items: flex-start;
+    padding: 12px 14px;
+    gap: 8px;
+  }
+
+  .card__header-name {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .card__header-barcode {
+    flex-shrink: 0;
+  }
+
+  .card__prices {
+    padding: 0 14px;
+  }
+
+  .card__footer {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 12px 14px;
+  }
+
+  .card__address {
+    align-items: flex-start;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 360px) {
+  .card__header {
+    flex-direction: column;
+  }
+}

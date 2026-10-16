@@ -77,3 +77,29 @@
   color: var(--color-date-blue);
   text-decoration-color: var(--color-date-blue);
 }
+
+@media (max-width: 600px) {
+  .cellContainer {
+    padding: 4px;
+  }
+
+  .dataWrapper {
+    max-width: 100%;
+    font-size: 0.82rem;
+  }
+
+  .dataRow,
+  .dataRowNoMargin {
+    flex-direction: column;
+    overflow-wrap: anywhere;
+  }
+
+  .label {
+    min-width: 0;
+    font-size: 0.75rem;
+  }
+
+  .mainValue {
+    font-size: 1em;
+  }
+}
