@@ -4,7 +4,6 @@ import PriceInfo from '../productpricecell/PriceInfo';
 
 const ProductPriceList = ({ productsprices, barcode }) => {
 
-  console.log("ProductPriceList received productsprices:", productsprices);
     // Provjera da li niz postoji i ima elemente
   if (!productsprices || productsprices.length === 0) {
     return (

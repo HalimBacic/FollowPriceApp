@@ -19,7 +19,6 @@ const Favorites = () => {
     useEffect(() => {
       const fetchData = async () => {
       const products = await service.getUserProducts("bacich95@gmail.com");
-      console.log(products);
       setData(products);
     };
     fetchData();

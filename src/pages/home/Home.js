@@ -27,7 +27,6 @@ const Home = () => {
 
   function handleSort(sorts) {
     setSort(sorts);
-    console.log("Sorting by:", sort);
   }
 
   return (

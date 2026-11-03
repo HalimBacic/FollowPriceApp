@@ -45,6 +45,13 @@
   color: #5d6d7e;
 }
 
+.store-city-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
 .store-city {
   font-size: 0.9rem;
   color: #7f8c8d;

@@ -45,4 +45,3 @@ const AllProductTemplate = {
 };
 
 export default AllProductTemplate;
-// Ili samo console.log(TemplateProductStore) u JavaScript kodu.

@@ -62,6 +62,21 @@
   object-fit: contain;
 }
 
+.priceBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.lowestPriceLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-success);
+}
+
 .footerRow {
   display: flex;
   justify-content: space-between;

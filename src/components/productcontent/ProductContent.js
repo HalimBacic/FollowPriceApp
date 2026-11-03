@@ -12,7 +12,7 @@ function ProductContent({ barcode }) {
   const [data, setdata] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
-  const [sort, setSort] = useState(null);
+  const [, setSort] = useState(null);
   const barcodeRef = useRef(null);
 
   async function changePage(newPage) {
@@ -23,15 +23,12 @@ function ProductContent({ barcode }) {
 
   function handleSort(sorts) {
     setSort(sorts);
-    console.log("Sorting by:", sort);
   }
   useEffect(() => {
     const fetchData = async () => {
-      console.log("Fetching data for barcode:", barcode);
       const prices = await service.getPricesByBarcode(barcode, 1);
       setdata(prices);
       setLoading(false);
-      console.log(prices);
     };
     fetchData();
   }, [barcode]);

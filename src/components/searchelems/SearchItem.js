@@ -8,10 +8,6 @@ const SearchItem = ({ item }) => {
 
   const gotoProductPage = (e) => {
     e.stopPropagation();
-    console.log(
-      "Navigating to product page for barcode:",
-      item.product.barcode
-    );
     navigate("/product/" + item.product.barcode);
   };
 

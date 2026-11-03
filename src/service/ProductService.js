@@ -16,7 +16,6 @@ class ProductService {
       if (response.status === 204) {
         return [];
       }
-      console.log("Dohvaćeni podaci:", response.data);
       return response.data;
     } catch (error) {
       console.error("Greška prilikom dohvatanja cijena:", error);

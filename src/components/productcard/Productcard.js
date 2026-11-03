@@ -60,10 +60,13 @@ const Productcard = ({ productdata }) => {
           }}
         />
 
-        <ProductPriceCell
-          currentPrice={productdata.price}
-          oldPrice={productdata.oldprice}
-        />
+        <div className={style.priceBlock}>
+          <span className={style.lowestPriceLabel}>Lowest price</span>
+          <ProductPriceCell
+            currentPrice={productdata.price}
+            oldPrice={productdata.oldprice}
+          />
+        </div>
       </div>
 
       <div className={style.footerRow}>

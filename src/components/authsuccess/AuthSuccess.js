@@ -11,7 +11,6 @@ const AuthSuccess = () => {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const token = params.get("token");
-    console.log("Primljeni token:", token);
     if (token) {
       localStorage.setItem("jwt", token);
       setUser(jwtDecode(token));

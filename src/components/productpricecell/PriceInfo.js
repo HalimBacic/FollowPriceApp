@@ -3,7 +3,8 @@ import "./ProductPriceCell.css";
 import { useAuth } from "../authsuccess/AuthContext";
 import productService from "../../service/ProductService";
 import { BsCart3 } from "react-icons/bs";
-import { Button } from "@mui/material";
+import { Button, IconButton, Tooltip } from "@mui/material";
+import LocationOnOutlined from "@mui/icons-material/LocationOnOutlined";
 
 
 const addToCart = async (barcode, email, storeid) => {
@@ -31,6 +32,9 @@ const PriceInfo = ({ product, barcode }) => {
     });
   };
 
+  const showStoreLocation = (store) => {
+  };
+
   if (!isValidPrice) {
     return (
       <div className="price-card error">
@@ -45,7 +49,29 @@ const PriceInfo = ({ product, barcode }) => {
       <div className="store-info">
         <div className="store-name">{product.store.name}</div>
         <div className="store-address">{product.store.address}</div>
-        <div className="store-city">{product.store.city}</div>
+        <div className="store-city-row">
+          <div className="store-city">{product.store.city}</div>
+          <Tooltip title="Prikaži lokaciju trgovine">
+            <IconButton
+              aria-label="Prikaži lokaciju trgovine"
+              onClick={(e) => {
+                e.stopPropagation();
+                showStoreLocation(product.store);
+              }}
+              sx={{
+                color: "#E67E22",
+                p: 0.35,
+                filter: "drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35))",
+                "&:hover": {
+                  color: "#D35400",
+                  filter: "drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4))",
+                },
+              }}
+            >
+              <LocationOnOutlined sx={{ fontSize: 26 }} />
+            </IconButton>
+          </Tooltip>
+        </div>
       </div>
 
       {/* Prices */}
@@ -75,7 +101,6 @@ const PriceInfo = ({ product, barcode }) => {
           variant="contained"
           onClick={async (e) => {
             e.stopPropagation(); 
-            console.log(" Adding to cart:", product);
             await addToCart(barcode, user.email, product.store.id);
             setHasCartItems(true)}}
           startIcon={<BsCart3 size={20} />}
