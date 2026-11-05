@@ -3,7 +3,7 @@ import "./ProductPriceCell.css";
 import { useAuth } from "../authsuccess/AuthContext";
 import productService from "../../service/ProductService";
 import { BsCart3 } from "react-icons/bs";
-import { Button, IconButton, Tooltip } from "@mui/material";
+import { Button, Tooltip } from "@mui/material";
 import LocationOnOutlined from "@mui/icons-material/LocationOnOutlined";
 
 
@@ -52,24 +52,41 @@ const PriceInfo = ({ product, barcode }) => {
         <div className="store-city-row">
           <div className="store-city">{product.store.city}</div>
           <Tooltip title="Prikaži lokaciju trgovine">
-            <IconButton
+            <Button
+              variant="outlined"
+              size="small"
               aria-label="Prikaži lokaciju trgovine"
               onClick={(e) => {
                 e.stopPropagation();
                 showStoreLocation(product.store);
               }}
+              startIcon={<LocationOnOutlined sx={{ fontSize: 20 }} />}
               sx={{
+                minWidth: 0,
+                px: 0.75,
+                py: 0.15,
+                fontSize: "0.65rem",
+                fontWeight: 700,
+                lineHeight: 1.2,
+                textTransform: "none",
                 color: "#E67E22",
-                p: 0.35,
-                filter: "drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35))",
+                borderColor: "#E67E22",
+                borderRadius: "6px",
+                boxShadow: "0 1px 3px rgba(0, 0, 0, 0.25)",
+                "& .MuiButton-startIcon": {
+                  marginRight: "4px",
+                  marginLeft: 0,
+                },
                 "&:hover": {
                   color: "#D35400",
-                  filter: "drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4))",
+                  borderColor: "#D35400",
+                  backgroundColor: "rgba(230, 126, 34, 0.08)",
+                  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
                 },
               }}
             >
-              <LocationOnOutlined sx={{ fontSize: 26 }} />
-            </IconButton>
+              Location
+            </Button>
           </Tooltip>
         </div>
       </div>
