@@ -55,6 +55,89 @@ class UtilService {
   }
 
   static USER_LOCATION_KEY = "userLocation";
+  static USER_CART_KEY = "userCart";
+  static CART_STATUS_KEY = "cart-status";
+
+  static normalizeCartIds(cart) {
+    if (typeof cart === "string") {
+      try {
+        cart = JSON.parse(cart);
+      } catch {
+        return cart ? [String(cart)] : [];
+      }
+    }
+    if (!Array.isArray(cart)) {
+      if (Array.isArray(cart?.cart)) return UtilService.normalizeCartIds(cart.cart);
+      if (Array.isArray(cart?.items)) return UtilService.normalizeCartIds(cart.items);
+      if (Array.isArray(cart?.data)) return UtilService.normalizeCartIds(cart.data);
+      return [];
+    }
+
+    const ids = [];
+    for (const item of cart) {
+      if (item == null) continue;
+      if (typeof item === "string" || typeof item === "number") {
+        ids.push(String(item));
+      } else if (Array.isArray(item)) {
+        ids.push(...UtilService.normalizeCartIds(item));
+      } else if (typeof item === "object") {
+        const barcode = item.barcode ?? item.product?.barcode;
+        const storeId =
+          item.store_id ?? item.storeId ?? item.store?.id ?? item.id;
+        if (barcode != null) ids.push(String(barcode));
+        if (storeId != null) ids.push(String(storeId));
+      }
+    }
+    return [...new Set(ids)];
+  }
+
+  static getCartIds() {
+    try {
+      const raw = localStorage.getItem(UtilService.USER_CART_KEY);
+      return raw ? UtilService.normalizeCartIds(JSON.parse(raw)) : [];
+    } catch {
+      return [];
+    }
+  }
+
+  static saveCartIds(cart) {
+    const ids = UtilService.normalizeCartIds(cart);
+    localStorage.setItem(UtilService.USER_CART_KEY, JSON.stringify(ids));
+    if (ids.length > 0) {
+      localStorage.setItem(UtilService.CART_STATUS_KEY, "true");
+    } else {
+      localStorage.removeItem(UtilService.CART_STATUS_KEY);
+    }
+    return ids;
+  }
+
+  static clearCartIds() {
+    localStorage.removeItem(UtilService.USER_CART_KEY);
+    localStorage.removeItem(UtilService.CART_STATUS_KEY);
+  }
+
+  static isInCart(barcode, storeId) {
+    const ids = UtilService.getCartIds();
+    return Boolean(
+      (barcode != null && ids.includes(String(barcode))) ||
+        (storeId != null && ids.includes(String(storeId)))
+    );
+  }
+
+  static addCartIds(barcode, storeId) {
+    const ids = new Set(UtilService.getCartIds());
+    if (barcode != null) ids.add(String(barcode));
+    if (storeId != null) ids.add(String(storeId));
+    return UtilService.saveCartIds([...ids]);
+  }
+
+  static removeCartIds(barcode, storeId) {
+    const remove = new Set(
+      [barcode, storeId].filter((v) => v != null).map(String)
+    );
+    const ids = UtilService.getCartIds().filter((id) => !remove.has(id));
+    return UtilService.saveCartIds(ids);
+  }
 
   static getUserLocation() {
     try {

@@ -18,8 +18,9 @@ const Favorites = () => {
     const [data, setData] = useState([])
     useEffect(() => {
       const fetchData = async () => {
-      const products = await service.getUserProducts("bacich95@gmail.com");
-      setData(products);
+      const data = await service.getUserProducts("bacich95@gmail.com");
+      console.log(data.products);
+      setData(data.products);
     };
     fetchData();
     

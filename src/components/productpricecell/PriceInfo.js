@@ -6,20 +6,18 @@ import { BsCart3 } from "react-icons/bs";
 import { Button, Tooltip } from "@mui/material";
 import LocationOnOutlined from "@mui/icons-material/LocationOnOutlined";
 
-
-const addToCart = async (barcode, email, storeid) => {
-  await productService.addProductForUser(barcode, email, storeid);
-}
-
 const PriceInfo = ({ product, barcode }) => {
-    const { user, logout, setHasCartItems } = useAuth()
+  const { user, addCartItem, removeCartItem, isInCart } = useAuth();
+  const storeId = product?.store?.id;
+  const inCart = isInCart(barcode, storeId);
+
   const currentPrice = Number(product.price) || 0;
   const previousPrice = Number(product.oldprice) || 0;
 
   const isValidPrice = !isNaN(currentPrice) && !isNaN(previousPrice);
   const priceIncreased = isValidPrice ? currentPrice > previousPrice : false;
   const priceChange = isValidPrice
-    ? ((currentPrice - previousPrice) / previousPrice * 100).toFixed(1)
+    ? (((currentPrice - previousPrice) / previousPrice) * 100).toFixed(1)
     : "0.0";
 
   const formatDate = (dateString) => {
@@ -32,7 +30,18 @@ const PriceInfo = ({ product, barcode }) => {
     });
   };
 
-  const showStoreLocation = (store) => {
+  const showStoreLocation = (store) => {};
+
+  const handleAddToCart = async (e) => {
+    e.stopPropagation();
+    await productService.addProductForUser(barcode, user.email, storeId);
+    addCartItem(barcode, storeId);
+  };
+
+  const handleRemoveFromCart = async (e) => {
+    e.stopPropagation();
+    await productService.deleteProdForUser(barcode, user.email, storeId);
+    removeCartItem(barcode, storeId);
   };
 
   if (!isValidPrice) {
@@ -114,25 +123,43 @@ const PriceInfo = ({ product, barcode }) => {
             <span>{Math.abs(priceChange)}%</span>
           </div>
         </div>
-        {user && <Button
-          variant="contained"
-          onClick={async (e) => {
-            e.stopPropagation(); 
-            await addToCart(barcode, user.email, product.store.id);
-            setHasCartItems(true)}}
-          startIcon={<BsCart3 size={20} />}
-          sx={{
-            backgroundColor: "#FFC145",
-            color: "#000",
-            fontFamily: "Figtree, sans-serif",
-            fontWeight: "600",
-            "&:hover": {
-              backgroundColor: "#e6ac3a",
-            },
-          }}
-        >
-          Add to cart
-        </Button>}
+        {user && !inCart && (
+          <Button
+            variant="contained"
+            onClick={handleAddToCart}
+            startIcon={<BsCart3 size={20} />}
+            sx={{
+              backgroundColor: "#FFC145",
+              color: "#000",
+              fontFamily: "Figtree, sans-serif",
+              fontWeight: "600",
+              "&:hover": {
+                backgroundColor: "#e6ac3a",
+              },
+            }}
+          >
+            Add to cart
+          </Button>
+        )}
+
+        {user && inCart && (
+          <Button
+            variant="contained"
+            onClick={handleRemoveFromCart}
+            startIcon={<BsCart3 size={20} />}
+            sx={{
+              backgroundColor: "#ff4545ff",
+              color: "#000",
+              fontFamily: "Figtree, sans-serif",
+              fontWeight: "600",
+              "&:hover": {
+                backgroundColor: "#e6ac3a",
+              },
+            }}
+          >
+            Remove from cart
+          </Button>
+        )}
 
         <div className="price-row date">
           <span>Change date </span>
