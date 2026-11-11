@@ -91,15 +91,20 @@ class ProductService {
 
   async deleteProdForUser(barcode, email, storeid) {
     try {
-      const response = await this.api.post(`/deleteproductforuser`, {
-        barcode: barcode,
-        email: email,
-        store_id: storeid,
+      const response = await this.api.delete(`/deleteproductforuser`, {
+        data: {
+          barcode: barcode,
+          email: email,
+          store_id: storeid,
+        },
       });
 
-      if (response.status === 201) return true;
+      if (response.status === 200 || response.status === 201 || response.status === 204) {
+        return true;
+      }
+      return false;
     } catch (error) {
-      console.error("Greška prilikom dodavanja proizvoda korisniku:", error);
+      console.error("Greška prilikom brisanja proizvoda korisniku:", error);
       return false;
     }
   }
